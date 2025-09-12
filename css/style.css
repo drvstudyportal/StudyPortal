@@ -1,3 +1,47 @@
+/* Floating WhatsApp Button */
+.floating-whatsapp {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1030;
+}
+.floating-whatsapp a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #25D366;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.floating-whatsapp a:hover {
+  color: #fff;
+  background-color: #1ebc57;
+}
+
+/* Store badges */
+.store-badges {
+  gap: 10px;
+}
+.store-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #000;
+  color: #fff !important;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.store-badge i {
+  font-size: 20px;
+  margin-right: 8px;
+}
+.store-badge:hover {
+  opacity: 0.9;
+}
 /********** Template CSS **********/
 :root {
     --primary: #f69050;

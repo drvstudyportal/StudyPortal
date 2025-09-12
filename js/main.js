@@ -105,6 +105,57 @@
         }
     });
 
+    $(document).ready(function() {
+    var courses = $('#courses-container .col-lg-3');
+    var coursesPerPage = 12;
+    var currentPage = 1;
+    var numPages = Math.ceil(courses.length / coursesPerPage);
+
+    function showPage(page) {
+        courses.hide();
+        var start = (page - 1) * coursesPerPage;
+        var end = start + coursesPerPage;
+        courses.slice(start, end).show();
+    }
+
+    function updatePagination() {
+        $('#pagination-numbers').empty();
+        for (var i = 1; i <= numPages; i++) {
+            var pageLink = $('<a href="#" class="page-number">' + i + '</a>');
+            if (i === currentPage) {
+                pageLink.addClass('active');
+            }
+            $('#pagination-numbers').append(pageLink);
+        }
+    }
+
+    showPage(1);
+    updatePagination();
+
+    $('#next-btn').click(function() {
+        if (currentPage < numPages) {
+            currentPage++;
+            showPage(currentPage);
+            updatePagination();
+        }
+    });
+
+    $('#prev-btn').click(function() {
+        if (currentPage > 1) {
+            currentPage--;
+            showPage(currentPage);
+            updatePagination();
+        }
+    });
+
+    $(document).on('click', '.page-number', function(e) {
+        e.preventDefault();
+        currentPage = parseInt($(this).text());
+        showPage(currentPage);
+        updatePagination();
+    });
+});
+
 })(jQuery);
 
 
