@@ -2,7 +2,7 @@
 .floating-whatsapp {
   position: fixed;
   right: 18px;
-  bottom: 18px;
+  bottom: 88px;
   z-index: 1030;
 }
 .floating-whatsapp a {
@@ -19,6 +19,29 @@
 .floating-whatsapp a:hover {
   color: #fff;
   background-color: #1ebc57;
+}
+
+/* Floating YouTube Button */
+.floating-youtube {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1030;
+}
+.floating-youtube a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #FF0000;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.floating-youtube a:hover {
+  color: #fff;
+  background-color: #cc0000;
 }
 
 /* Store badges */
@@ -44,30 +67,31 @@
 }
 /********** Template CSS **********/
 :root {
-    --primary: #f69050;
-    --light: #F0FBFC;
-    --light: #f0e4de;
-    --dark: #181d38;
+    --primary: #1E3A8A;
+    --secondary: #3B82F6;
+    --accent: #60A5FA;
+    --light: #F0F9FF;
+    --dark: #1E293B;
 }
 
 .btn {
-    background-color: #fb873f;
+    background-color: var(--primary);
     border: none;
 }
 
 .btn a {
     text-decoration: none;
-    color: #fff;
+    color: #FFFFFF;
 }
 
 .btn:hover {
     background: transparent;
-    color: var(--primary) !important;
-    border: 1px solid var(--primary);
+    color: var(--secondary) !important;
+    border: 1px solid var(--secondary);
 }
 
 .btn:hover a {
-    color: var(--primary) !important;
+    color: var(--secondary) !important;
 }
 
 .btn-light {
@@ -76,8 +100,8 @@
 
 .btn-light:hover {
     background: transparent;
-    color: var(--light) !important;
-    border: 1px solid var(--light);
+    color: var(--dark) !important;
+    border: 1px solid var(--dark);
 }
 
 .fw-medium {
@@ -164,7 +188,7 @@
 .navbar-light .navbar-nav .nav-link {
     margin-right: 30px;
     padding: 25px 0;
-    color: #FFFFFF;
+    color: var(--dark);
     font-size: 15px;
     text-transform: uppercase;
     outline: none;
@@ -172,7 +196,7 @@
 
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .nav-link.active {
-    color: var(--primary);
+    color: var(--secondary);
 }
 
 @media (max-width: 991.98px) {
@@ -202,11 +226,11 @@
 }
 
 .navbar-toggler-icon {
-    color: #fb873f;
+    color: var(--primary);
 }
 
 .navbar-toggler {
-    border: 2px solid #fb873f;
+    border: 2px solid var(--primary);
 }
 
 @media (min-width: 992px) {
@@ -231,6 +255,15 @@
         transition: .5s;
         opacity: 1;
     }
+}
+
+/* Header Social Icons Hover Effect */
+.navbar-nav .d-lg-flex .mx-2.text-dark i {
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbar-nav .d-lg-flex .mx-2.text-dark i:hover {
+    transform: scale(1.2);
 }
 
 /*** Header carousel ***/
@@ -326,19 +359,19 @@
 
 .header-carousel .owl-nav .owl-prev:hover,
 .header-carousel .owl-nav .owl-next:hover {
-    background: var(--primary);
-    border-color: var(--primary);
+    background: var(--secondary);
+    border-color: var(--secondary);
 }
 
 .page-header {
-    background: linear-gradient(rgba(24, 29, 56, .7), rgba(24, 29, 56, .7)), url(../img/carousel-1.jpg);
+    background: linear-gradient(rgba(30, 41, 59, .7), rgba(30, 41, 59, .7)), url(../img/1.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .page-header-inner {
-    background: rgba(15, 23, 43, .7);
+    background: rgba(30, 41, 59, .7);
 }
 
 .breadcrumb-item+.breadcrumb-item::before {
@@ -360,7 +393,7 @@
     height: 2px;
     top: 4px;
     left: -40px;
-    background: var(--primary);
+    background: var(--secondary);
     z-index: -1;
 }
 
@@ -371,7 +404,7 @@
     height: 2px;
     bottom: 5px;
     left: -60px;
-    background: var(--primary);
+    background: var(--secondary);
     z-index: -1;
 }
 
@@ -393,12 +426,12 @@
 
 
 .service-item i {
-    color: var(--primary);
+    color: var(--secondary);
 }
 
 .service-item:hover {
     margin-top: -10px;
-    background: var(--primary);
+    background: var(--secondary);
 }
 
 .service-item * {
@@ -423,7 +456,7 @@
 }
 
 .category .content:hover {
-    background-color: var(--primary);
+    background-color: var(--secondary);
     color: #fff;
 }
 
@@ -509,7 +542,7 @@
 }
 
 .testimonial-carousel .owl-item.center .testimonial-text {
-    background: var(--primary) !important;
+    background: var(--secondary) !important;
 }
 
 .testimonial-carousel .owl-item.center .testimonial-text * {
@@ -534,8 +567,8 @@
 }
 
 .testimonial-carousel .owl-dot.active {
-    background: var(--primary);
-    border-color: var(--primary);
+    background: var(--secondary);
+    border-color: var(--secondary);
 }
 
 
@@ -555,7 +588,7 @@
 }
 
 .footer .btn.btn-social:hover {
-    color: var(--primary);
+    color: var(--secondary);
 }
 
 .footer .btn.btn-link {
@@ -603,4 +636,631 @@
     margin-right: 0;
     padding-right: 0;
     border-right: none;
+}
+
+.text-primary {
+    color: var(--primary) !important;
+}
+
+/* Blog Card Hover Effect */
+.blog-card {
+    transition: all 0.3s ease-in-out;
+}
+
+.blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Bounce Animation */
+.bounce-animation {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Slide-in Animation */
+.slide-in .modal-dialog {
+    transform: translateY(-50px);
+    transition: transform 0.3s ease-out;
+}
+
+.slide-in.show .modal-dialog {
+    transform: translateY(0);
+}
+
+/* Feature Card Hover Effect */
+.feature-card {
+    transition: all 0.3s ease-in-out;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.feature-card .feature-icon i {
+    transition: all 0.3s ease-in-out;
+}
+
+.feature-card:hover .feature-icon i {
+    transform: rotate(360deg);
+}
+
+/* Feature Item Hover Effect */
+.feature-item {
+    transition: all 0.3s ease-in-out;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* Mission Vision Card Style */
+.mission-vision-card {
+    background-color: var(--light);
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+.mission-vision-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* Font Weight 1000 */
+.font-weight-1000 {
+    font-weight: 1000;
+}
+
+/* Light Blue Background */
+.bg-light-blue {
+    background-color: #f0f8ff;
+}
+
+/* Blockquote Style */
+.blockquote {
+    padding-left: 20px;
+    margin-left: 20px;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+
+/* Enhanced Interactive Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Enhanced Course Cards */
+.course-item {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.course-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+    z-index: 1;
+}
+
+.course-item:hover::before {
+    left: 100%;
+}
+
+.course-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.course-item .image {
+    overflow: hidden;
+    position: relative;
+}
+
+.course-item .image img {
+    transition: transform 0.6s ease;
+}
+
+.course-item:hover .image img {
+    transform: scale(1.1);
+}
+
+/* Interactive Service Items */
+.service-item {
+    transition: .5s;
+}
+
+
+.service-item i {
+    color: var(--secondary);
+}
+
+.service-item:hover {
+    margin-top: -10px;
+    background: var(--secondary);
+}
+
+.service-item * {
+    transition: all .3s ease-in-out;
+}
+
+.service-item:hover * {
+    color: #fff !important;
+}
+
+/* Flip Card Styles */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+/* Style the front side (fallback if you don't want a 3D effect) */
+.flip-card-front {
+    background-color: #fff;
+    color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+    background-color: var(--primary);
+    color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flip-card-back h5 {
+    color: white;
+}
+
+.flip-card-back p {
+    color: #f0f0f0;
+}
+
+.flip-card-back .btn {
+    background-color: white;
+    color: var(--primary) !important;
+    border: none;
+}
+
+.flip-card-back .btn:hover {
+    background-color: var(--secondary);
+    color: white !important;
+}
+
+/* Interactive Buttons */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Animated Progress Bars */
+.progress-container {
+    position: relative;
+    background: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 8px;
+    margin: 20px 0;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--secondary), var(--primary));
+    border-radius: 10px;
+    position: relative;
+    transition: width 1s ease-in-out;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+/* Interactive Counters */
+.counter {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+.counter:hover {
+    transform: scale(1.1);
+    color: var(--secondary);
+}
+
+/* Floating Elements */
+.floating-element {
+    animation: float 3s ease-in-out infinite;
+}
+
+.floating-element:nth-child(2n) {
+    animation-delay: 1s;
+}
+
+.floating-element:nth-child(3n) {
+    animation-delay: 2s;
+}
+
+/* Interactive Navigation */
+.navbar-nav .nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--secondary);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+    width: 100%;
+}
+
+/* Interactive FAQ */
+.accordion-button {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.accordion-button:not(.collapsed) {
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    color: white;
+    transform: scale(1.02);
+}
+
+.accordion-button::after {
+    transition: transform 0.3s ease;
+}
+
+.accordion-button:not(.collapsed)::after {
+    transform: rotate(180deg);
+}
+
+.accordion-collapse {
+    transition: all 0.3s ease;
+}
+
+/* Loading Animation */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3));
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Interactive Testimonials */
+.testimonial-item {
+    transition: all 0.4s ease;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.testimonial-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Scroll Animations */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.scroll-animate.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Interactive Cards */
+.interactive-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.interactive-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+    z-index: 1;
+}
+
+.interactive-card:hover::before {
+    left: 100%;
+}
+
+.interactive-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Interactive Cards with Enhanced Effects */
+.interactive-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.interactive-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+    z-index: 1;
+}
+
+.interactive-card:hover::before {
+    left: 100%;
+}
+
+.interactive-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Enhanced Navigation with Active States */
+.navbar-nav .nav-link.active {
+    color: var(--secondary) !important;
+    font-weight: 600;
+}
+
+/* Interactive Elements with Hover Effects */
+.interactive-element {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.interactive-element:hover {
+    transform: scale(1.05);
+    color: var(--secondary);
+}
+
+/* Loading States */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-overlay .spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+    .interactive-card:hover {
+        transform: translateY(-5px) scale(1.01);
+    }
+    
+    .floating-whatsapp,
+    .floating-youtube {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .counter {
+        font-size: 2rem;
+    }
+    
+    .stat-counter {
+        font-size: 2.5rem;
+    }
+}
+.service-item.equal-height-card {
+    height: 100%;
+}
+.feature-list-vertical .feature-tab {
+    margin-bottom: 15px;
+    background-color: #f0f9ff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.feature-list-vertical .feature-tab:hover {
+    background-color: var(--secondary);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.feature-list-vertical .feature-tab p {
+    font-size: 1.1rem;
 }

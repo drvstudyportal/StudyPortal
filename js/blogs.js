@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
     res.status(405).send("Method Not Allowed");
     return;
   }
-  const { title, slug, publishedAt, imageUrl, body } = req.body;
+  const { title, publishedAt, imageUrl, body } = req.body;
 
   if (!title || !body) {
     res.status(400).json({ error: 'Missing title or body' });

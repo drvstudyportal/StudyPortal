@@ -40,8 +40,8 @@
                 bodyText = post.body.map(block => block.children ? block.children.map(child => child.text).join('') : '').join('<br>');
               }
               postsHtml += `
-                <div class="card mb-3 p-4">
-                  <h3 class="card-title" style="color:#fb873f;">${post.title}</h3>
+                <div class="card blog-card mb-3 p-4">
+                  <h3 class="card-title" style="color:var(--primary);">${post.title}</h3>
                   ${post.imageUrl ? `<img src="${post.imageUrl}" class="img-fluid mb-2" style="max-height:200px;object-fit:cover;">` : ''}
                   <div class="card-text">${bodyText}</div>
                   <small class="text-muted">Published: ${post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : "—"}</small>
@@ -61,16 +61,30 @@
     fetchSanityPosts();
 
     $('#post-blog-btn').click(function () {
-      const enteredKey = prompt("Enter passkey to post a blog:");
+      $('#passkeyModal').modal('show');
+    });
+
+    $('#verify-passkey-btn').click(function () {
+      const enteredKey = $('#passkey-input').val();
       if (enteredKey === SECRET_PASSKEY) {
-        $('#postBlogModal').css('display', 'flex');
+        $('#passkeyModal').modal('hide');
+        $('#postBlogModal').modal('show');
+        $('#passkey-input').val('');
+        $('#passkey-error').addClass('d-none');
       } else {
-        alert("Access denied. Invalid passkey.");
+        $('#passkey-error').removeClass('d-none');
+        $('#passkey-input').val('').focus();
+      }
+    });
+
+    $('#passkey-input').on('keypress', function(e) {
+      if (e.which === 13) {
+        $('#verify-passkey-btn').click();
       }
     });
 
     $('#close-modal-btn').click(function () {
-      $('#postBlogModal').hide();
+      $('#postBlogModal').modal('hide');
     });
 
     $('#submit-post-btn').click(function () {
@@ -95,8 +109,8 @@
         else return res.text().then(text => Promise.reject(text));
       })
       .then(data => {
-    alert('Blog posted successfully!');
-        $('#postBlogModal').hide();
+        alert('Blog posted successfully!');
+        $('#postBlogModal').modal('hide');
         fetchSanityPosts();
       })
       .catch(err => {
@@ -164,5 +178,235 @@
             }
         }
     });
+
+    // Interactive Counter Animation
+    function animateCounters() {
+        $('.counter').each(function() {
+            const $this = $(this);
+            const countTo = $this.attr('data-count');
+            
+            $({ countNum: $this.text() }).animate({
+                countNum: countTo
+            }, {
+                duration: 2000,
+                easing: 'swing',
+                step: function() {
+                    $this.text(Math.floor(this.countNum));
+                },
+                complete: function() {
+                    $this.text(this.countNum);
+                }
+            });
+        });
+    }
+
+    // Scroll Animation Observer
+    function initScrollAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    
+                    // Trigger counter animation if element has counter
+                    if (entry.target.querySelector('.counter')) {
+                        animateCounters();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with scroll-animate class
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+    }
+
+    // Interactive Progress Bars
+    function initProgressBars() {
+        $('.progress-bar').each(function() {
+            const $this = $(this);
+            const width = $this.data('width') || 0;
+            
+            setTimeout(() => {
+                $this.css('width', width + '%');
+            }, 500);
+        });
+    }
+
+    // Enhanced Course Card Interactions
+    function initCourseInteractions() {
+        $('.course-item').hover(
+            function() {
+                $(this).find('.image img').css('transform', 'scale(1.1)');
+            },
+            function() {
+                $(this).find('.image img').css('transform', 'scale(1)');
+            }
+        );
+
+        // Add click ripple effect
+        $('.course-item').on('click', function(e) {
+            const $this = $(this);
+            const ripple = $('<span class="ripple"></span>');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.css({
+                width: size,
+                height: size,
+                left: x,
+                top: y
+            });
+            
+            $this.append(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    }
+
+    // Interactive FAQ Enhancement
+    function initFAQInteractions() {
+        $('.accordion-button').on('click', function() {
+            const $this = $(this);
+            const $collapse = $($this.data('bs-target'));
+            
+            // Add smooth animation
+            $collapse.on('show.bs.collapse', function() {
+                $(this).css('height', '0px').animate({
+                    height: $(this)[0].scrollHeight + 'px'
+                }, 300);
+            });
+            
+            $collapse.on('hide.bs.collapse', function() {
+                $(this).animate({
+                    height: '0px'
+                }, 300);
+            });
+        });
+    }
+
+    // Floating Action Button Interactions
+    function initFloatingButtons() {
+        $('.floating-whatsapp, .floating-youtube').hover(
+            function() {
+                $(this).addClass('pulse-animation');
+            },
+            function() {
+                $(this).removeClass('pulse-animation');
+            }
+        );
+    }
+
+    // Interactive Navigation Enhancement
+    function initNavigationInteractions() {
+        // Smooth scroll for anchor links
+        $('a[href^="#"]').on('click', function(e) {
+            e.preventDefault();
+            const target = $(this.getAttribute('href'));
+            if (target.length) {
+                $('html, body').animate({
+                    scrollTop: target.offset().top - 80
+                }, 1000, 'easeInOutExpo');
+            }
+        });
+
+        // Active navigation highlighting
+        $(window).on('scroll', function() {
+            const scrollPos = $(window).scrollTop() + 100;
+            
+            $('.navbar-nav .nav-link').each(function() {
+                const href = $(this).attr('href');
+                if (href && href.startsWith('#')) {
+                    const target = $(href);
+                    if (target.length && target.offset().top <= scrollPos && target.offset().top + target.outerHeight() > scrollPos) {
+                        $('.navbar-nav .nav-link').removeClass('active');
+                        $(this).addClass('active');
+                    }
+                }
+            });
+        });
+    }
+
+    // Loading States and Micro-interactions
+    function initLoadingStates() {
+        // Add loading state to buttons
+        $('.btn').on('click', function() {
+            const $this = $(this);
+            const originalText = $this.text();
+            
+            $this.html('<span class="loading-spinner"></span> Loading...');
+            
+            setTimeout(() => {
+                $this.text(originalText);
+            }, 2000);
+        });
+    }
+
+    // Parallax Effect for Hero Section
+    function initParallaxEffect() {
+        $(window).on('scroll', function() {
+            const scrolled = $(window).scrollTop();
+            const parallax = $('.header-carousel');
+            const speed = scrolled * 0.5;
+            
+            parallax.css('transform', 'translateY(' + speed + 'px)');
+        });
+    }
+
+    // Interactive Service Items
+    function initServiceInteractions() {
+        $('.service-item').on('mouseenter', function() {
+            $(this).addClass('pulse-animation');
+        }).on('mouseleave', function() {
+            $(this).removeClass('pulse-animation');
+        });
+    }
+
+    // Initialize all interactive features
+    function initInteractiveFeatures() {
+        initScrollAnimations();
+        initProgressBars();
+        initCourseInteractions();
+        initFAQInteractions();
+        initFloatingButtons();
+        initNavigationInteractions();
+        initLoadingStates();
+        initParallaxEffect();
+        initServiceInteractions();
+    }
+
+    // Call initialization
+    initInteractiveFeatures();
+
+    // Add CSS for ripple effect
+    $('<style>')
+        .prop('type', 'text/css')
+        .html(`
+            .ripple {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.6);
+                transform: scale(0);
+                animation: ripple-animation 0.6s linear;
+                pointer-events: none;
+            }
+            
+            @keyframes ripple-animation {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `)
+        .appendTo('head');
     
 })(jQuery);
