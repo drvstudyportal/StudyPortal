@@ -21,6 +21,35 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+ 
+    <style>
+  .category-card {
+    transition: transform .2s, box-shadow .2s;
+    border-radius: 24px;
+    background: #fff;
+    padding: 20px;
+    cursor: pointer;
+  }
+  .category-card:hover {
+    transform: translateY(-8px) scale(1.04);
+    box-shadow: 0px 8px 24px rgba(67, 90, 111, 0.1);
+  }
+  .card {
+    border-radius: 18px;
+    transition: box-shadow .2s;
+  }
+  .card:hover {
+    box-shadow: 0 10px 24px rgba(246, 248, 250, 0.13);
+  }
+  .category-card img {
+    max-height: 150px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  h5, h6 {
+    font-weight: 600;
+  }
+</style>
 
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
@@ -35,779 +64,757 @@
 </head>
 
 <body>
-    <!-- Spinner Start -->
-    <div id="spinner"
-        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
+    <div class="content-wrapper">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
         </div>
-    </div>
-    <!-- Spinner End -->
+        <!-- Spinner End -->
 
 
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <p class="m-0 fw-bold" style="font-size: 20px;"><img src="https://cdn-cp-assets-public.classplus.co/DamanBot/kfB1d57wlIgZ" alt="" height="60px"><i>Study Portal Academy</i></p>
-        </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-            style="border: none;">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
-                <a href="courses.html" class="nav-item nav-link">Courses</a>
-                <a href="blogs.html" class="nav-item nav-link">Blogs</a>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
-                <a href="#" class="nav-item nav-link">
-                    <div id="google_translate_element"></div>
-                </a>
-                <div class="d-none d-lg-flex align-items-center ms-2">
-                    <a target="_blank" class="mx-2 text-dark" href="https://www.instagram.com/study_portal_academy?igsh=MTZxZGc3bHI1ajlrdw%3D%3D&utm_source=qr"><i class="fab fa-instagram"></i></a>
-                    <a target="_blank" class="mx-2 text-dark" href="https://wa.me/918447410108"><i class="fab fa-whatsapp"></i></a>
-                    <a target="_blank" class="mx-2 text-dark" href="https://www.facebook.com/profile.php?id=100018429821346"><i class="fab fa-facebook-f"></i></a>
-                    <a target="_blank" class="mx-2 text-dark" href="https://www.youtube.com/c/StudyPortalDrVijay?sub_confirmation=1"><i class="fab fa-youtube"></i></a>
-                    <a target="_blank" class="mx-2 text-dark" href="https://t.me/StudyPortalOfficial"><i class="fab fa-telegram-plane"></i></a>
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+            <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+                <p class="m-0 fw-bold" style="font-size: 20px;"><img src="https://cdn-cp-assets-public.classplus.co/DamanBot/kfB1d57wlIgZ" alt="" height="60px"><i>Study Portal Academy</i></p>
+            </a>
+            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                style="border: none;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto p-4 p-lg-0">
+                    <a href="index.html" class="nav-item nav-link">Home</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="courses.html" class="nav-item nav-link active">Courses</a>
+                    <a href="blogs.html" class="nav-item nav-link">Blogs</a>
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="#" class="nav-item nav-link">
+                        <div id="google_translate_element"></div>
+                    </a>
+                    <div class="d-none d-lg-flex align-items-center ms-2">
+                        <a target="_blank" class="mx-2 text-dark" href="https://www.instagram.com/study_portal_academy?igsh=MTZxZGc3bHI1ajlrdw%3D%3D&utm_source=qr"><i class="fab fa-instagram"></i></a>
+                        <a target="_blank" class="mx-2 text-dark" href="https://wa.me/918447410108"><i class="fab fa-whatsapp"></i></a>
+                        <a target="_blank" class="mx-2 text-dark" href="https://www.facebook.com/profile.php?id=100018429821346"><i class="fab fa-facebook-f"></i></a>
+                        <a target="_blank" class="mx-2 text-dark" href="https://www.youtube.com/c/StudyPortalDrVijay?sub_confirmation=1"><i class="fab fa-youtube"></i></a>
+                        <a target="_blank" class="mx-2 text-dark" href="https://t.me/StudyPortalOfficial"><i class="fab fa-telegram-plane"></i></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar End -->
+
+        <!-- Header Start -->
+        <div class="container-fluid bg-primary py-5 mb-5 page-header">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center">
+                        <h1 class="display-3 text-white animated slideInDown">Courses</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a class="text-white" href="index.html">Home</a></li>
+                                <li class="breadcrumb-item text-white active" aria-current="page">Courses</li>
+                            </ol>
+                        </nav>
+                        <p class="fw-bold text-white mb-0" style="font-size: 0.9rem;">Your Exam. Your Victory. Our Mission</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </nav>
-    <!-- Navbar End -->
+        <!-- Header End -->
 
-    <!-- Header Start -->
-    <div class="container-fluid bg-primary py-5 mb-5 page-header">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">Courses</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a class="text-white" href="index.html">Home</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Courses</li>
-                        </ol>
-                    </nav>
-                    <p class="fw-bold text-white mb-0" style="font-size: 0.9rem;">Your Exam. Your Victory. Our Mission</p>
+        <div class="container-xxl py-5">
+            <div class="container text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h1 class="mb-4" style="color: var(--primary);">“From TET to Principal Exams — One Destination for All Your Preparation.”</h1>
+                <p class="mb-4">Choose from Live Classes, Recorded Sessions, Notes, Test Series & Interview Batches.</p>
+                <a href="https://wa.me/918447410108" target="_blank" class="btn btn-primary py-3 px-5 mt-2">
+        Start a Session Now <i class="fab fa-whatsapp ms-2"></i>
+    </a>
+
+        </div>
+
+        <div class="container-xxl py-5">
+            <div class="container">
+      <div class="text-center wow fadeInUp scroll-animate" data-wow-delay="0.1s">
+        <h2 class="mb-4" style="color: var(--primary); font-size: 30px; font-weight: 600; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">
+            Why Our Courses Work
+        </h2>
+        <p class="mb-5 fst-italic" style="font-size: 22px; font-weight: 1000; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+            ✨ "Because We Know What Works in Competitive Exams."
+        </p>
+    </div>
+
+
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp scroll-animate" data-wow-delay="0.1s">
+                        <div class="feature-card h-100 p-4 text-center">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-book-open text-primary" style="font-size: 3rem;"></i>
+                            </div>
+                            <h5 class="card-title mb-3">Latest Syllabus Coverage</h5>
+                            <p class="card-text">Comprehensive coverage of all latest syllabus updates and amendments for competitive exams.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp scroll-animate" data-wow-delay="0.2s">
+                        <div class="feature-card h-100 p-4 text-center">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-chart-line text-primary" style="font-size: 3rem;"></i>
+                            </div>
+                            <h5 class="card-title mb-3">Exam Pattern Based Study Plans</h5>
+                            <p class="card-text">Strategic study plans designed specifically for each exam pattern and format.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp scroll-animate" data-wow-delay="0.3s">
+                        <div class="feature-card h-100 p-4 text-center">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-chalkboard-teacher text-primary" style="font-size: 3rem;"></i>
+                            </div>
+                            <h5 class="card-title mb-3">Expert Faculty</h5>
+                            <p class="card-text">Learn from experienced faculty with years of expertise in competitive exam preparation.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp scroll-animate" data-wow-delay="0.4s">
+                        <div class="feature-card h-100 p-4 text-center">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-question-circle text-primary" style="font-size: 3rem;"></i>
+                            </div>
+                            <h5 class="card-title mb-3">Regular Doubt-Solving</h5>
+                            <p class="card-text">Regular doubt-solving sessions to ensure complete understanding of concepts.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp scroll-animate" data-wow-delay="0.5s">
+                        <div class="feature-card h-100 p-4 text-center">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-user-graduate text-primary" style="font-size: 3rem;"></i>
+                            </div>
+                            <h5 class="card-title mb-3">Personalized Mentorship</h5>
+                            <p class="card-text">Individual guidance and mentorship tailored to your learning needs and goals.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp scroll-animate" data-wow-delay="0.6s">
+                        <div class="feature-card h-100 p-4 text-center">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-clipboard-check text-primary" style="font-size: 3rem;"></i>
+                            </div>
+                            <h5 class="card-title mb-3">Complete Preparation</h5>
+                            <p class="card-text">Comprehensive preparation covering both written exams and interview stages.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+
+        <!-- Categories Start -->
+        <div class="container-xxl py-5 category">
+  <div class="container">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+      <h6 class="section-title bg-white text-center px-3">Categories</h6>
+      <h1 class="mb-5" style="color: var(--primary);">Popular Topics to Explore</h1>
     </div>
-    <!-- Header End -->
-
-    <div class="container-xxl py-5">
-        <div class="container text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h1 class="mb-4" style="color: var(--primary);">“From TET to Principal Exams — One Destination for All Your Preparation.”</h1>
-            <p class="mb-4">Choose from Live Classes, Recorded Sessions, Notes, Test Series & Interview Batches.</p>
-            <a href="https://wa.me/918447410108" target="_blank" class="btn btn-primary py-3 px-5 mt-2">
-    Start a Session Now <i class="fab fa-whatsapp ms-2"></i>
-</a>
-
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-3 col-md-6 text-center">
+        <div class="category-card shadow" data-category="all_categories">
+          <img src="https://ali-cdn-cp-assets-public.classplus.co/cp-store-ui-revamp/bgLessCatIcon/cat_0.png" alt="All Categories" style="height:130px; object-fit:contain;"/>
+          <h5>All Categories</h5>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <div class="category-card shadow" data-category="assistant_commissioner">
+          <img src="
+https://ali-cdn-cp-assets-public.classplus.co/cp-store-ui-revamp/bgLessCatIcon/cat_82616.png" alt="Assistant Commissioner" />
+          <h5>Assistant Commissioner (KVS, NVS)</h5>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <div class="category-card shadow" data-category="principal_vice_principal">
+          <img src="https://ali-cdn-cp-assets-public.classplus.co/cp-store-ui-revamp/bgLessCatIcon/cat_762.png"alt="KVS Principal" />
+          <h5>Principal & Vice Principal (KVS, NVS, EMRS, UPSC, UKPSC & other State Exams)</h5>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <div class="category-card shadow" data-category="pgt_tgt_prt">
+          <img src="https://ali-cdn-cp-assets-public.classplus.co/cp-store-ui-revamp/bgLessCatIcon/cat_82540.png" alt="PGT, TGT & PRT" />
+          <h5>PGT, TGT & PRT (DSSSB, KVS, NVS, EMRS & State Exams)</h5>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <div class="category-card shadow" data-category="teacher_eligibility_test">
+          <img src="https://ali-cdn-cp-assets-public.classplus.co/cp-store-ui-revamp/bgLessCatIcon/cat_762.png" alt="Teacher Eligibility Test" />
+          <h5>Teacher Eligibility Test (CTET & State TET)</h5>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <div class="category-card shadow" data-category="non_teaching_posts">
+          <img src="https://ali-cdn-cp-assets-public.classplus.co/cp-store-ui-revamp/bgLessCatIcon/cat_9.png" alt="Non-Teaching Posts" />
+          <h5>Non-Teaching Posts (KVS, NVS, EMRS, DSSSB & Other State Exams)</h5>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <div class="category-card shadow" data-category="aiims_cre">
+          <img src="https://ali-cdn-cp-assets-public.classplus.co/cp-store-ui-revamp/bgLessCatIcon/cat_20.png" alt="AIIMS CRE" />
+          <h5>AIIMS CRE</h5>
+        </div>
+      </div>
     </div>
-
-    <div class="container-xxl py-5">
-        <div class="container">
-  <div class="text-center wow fadeInUp scroll-animate" data-wow-delay="0.1s">
-    <h2 class="mb-4" style="color: var(--primary); font-size: 30px; font-weight: 600; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">
-        Why Our Courses Work
-    </h2>
-    <p class="mb-5 fst-italic" style="font-size: 22px; font-weight: 1000; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
-        ✨ "Because We Know What Works in Competitive Exams."
-    </p>
+  </div>
 </div>
 
+        <!-- Categories End -->
 
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp scroll-animate" data-wow-delay="0.1s">
-                    <div class="feature-card h-100 p-4 text-center">
-                        <div class="feature-icon mb-3">
-                            <i class="fas fa-book-open text-primary" style="font-size: 3rem;"></i>
+
+
+
+        <!-- Courses Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="section-title bg-white text-center px-3">Popular Courses</h6>
+                    <h1 class="mb-5" style="color: var(--secondary);">Explore new and trending free online courses</h1>
+                </div>
+               <div id="courses-grid" class="row g-4 py-2">
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="course-item shadow">
+                            <div class="position-relative overflow-hidden text-light image">
+                                <img class="img-fluid" src="img/course-2.jpg" alt="">
+                                <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;"
+                                    class="px-2 py-1 fw-bold text-uppercase">FREE</div>
+
+                            </div>
+                            <div class="p-2 pb-0">
+
+                                <h5 class="mb-1"><a href="single.html" class="text-dark">HTML Course for Beginners</a> </h5>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
+                                    4.55</small>
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>5.8L+
+                                    Learners
+                                </small>
+                                <small class="flex-fill text-center py-1 px-2"><i
+                                        class="fa fa-user me-2"></i>Beginner</small>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>2.0
+                                    Hrs</small>
+                                <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 0</small>
+                                <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
+                                        Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
+                            </div>
                         </div>
-                        <h5 class="card-title mb-3">Latest Syllabus Coverage</h5>
-                        <p class="card-text">Comprehensive coverage of all latest syllabus updates and amendments for competitive exams.</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="course-item shadow">
+                            <div class="position-relative overflow-hidden text-light image">
+                                <img class="img-fluid" src="img/course-2.jpg" alt="">
+                                <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#0ed44c;"
+                                    class="px-2 py-1 fw-bold text-uppercase">PAID</div>
+
+                            </div>
+                            <div class="p-2 pb-0">
+
+                                <h5 class="mb-1">Front End Development-CSS
+                                </h5>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
+                                    4.55</small>
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>5.2L+
+                                    Learners
+                                </small>
+                                <small class="flex-fill text-center py-1 px-2"><i
+                                        class="fa fa-user me-2"></i>Beginner</small>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>4.0
+                                    Hrs</small>
+                                <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 199</small>
+                                <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
+                                        Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="course-item shadow">
+                            <div class="position-relative overflow-hidden text-light image">
+                                <img class="img-fluid" src="img/course-3.jpg" alt="">
+                                <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;"
+                                    class="px-2 py-1 fw-bold text-uppercase">FREE</div>
+
+                            </div>
+                            <div class="p-2 pb-0">
+
+                                <h5 class="mb-1">Introduction to JavaScript
+                                </h5>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
+                                    4.46</small>
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>76L+
+                                    Learners
+                                </small>
+                                <small class="flex-fill text-center py-1 px-2"><i
+                                        class="fa fa-user me-2"></i>Beginner</small>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>2.5
+                                    Hrs</small>
+                                <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 0</small>
+                                <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
+                                        Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="course-item shadow">
+                            <div class="position-relative overflow-hidden text-light image">
+                                <img class="img-fluid" src="img/course-4.jpg" alt="">
+                                <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#0ed44c;"
+                                    class="px-2 py-1 fw-bold text-uppercase">PAID</div>
+
+                            </div>
+                            <div class="p-2 pb-0">
+
+                                <h5 class="mb-1">Python Programming
+                                </h5>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
+                                    3.54</small>
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>3.3L+
+                                    Learners
+                                </small>
+                                <small class="flex-fill text-center py-1 px-2"><i
+                                        class="fa fa-user me-2"></i>Beginner</small>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>3.0
+                                    Hrs</small>
+                                <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 299</small>
+                                <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
+                                        Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="course-item shadow">
+                            <div class="position-relative overflow-hidden text-light image">
+                                <img class="img-fluid" src="img/course-5.jpg" alt="">
+                                <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;"
+                                    class="px-2 py-1 fw-bold text-uppercase">FREE</div>
+
+                            </div>
+                            <div class="p-2 pb-0">
+
+                                <h5 class="mb-1">SQL for Data Science
+                                </h5>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-center py-1 px-1"><i class="fa fa-star text-warning me-2"></i>
+                                    4.54</small>
+                                <small class="flex-fill text-center py-1 px-1"><i class="fa fa-user-graduate me-2"></i>1.3L+
+                                    Learners
+                                </small>
+                                <small class="flex-fill text-center py-1 px-1"><i
+                                        class="fa fa-user me-2"></i>Intermediate</small>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>5.0
+                                    Hrs</small>
+                                <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 0</small>
+                                <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
+                                        Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="course-item shadow">
+                            <div class="position-relative overflow-hidden text-light image">
+                                <img class="img-fluid" src="img/course-6.jpg" alt="">
+                                <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;"
+                                    class="px-2 py-1 fw-bold text-uppercase">FREE</div>
+
+                            </div>
+                            <div class="p-2 pb-0">
+
+                                <h5 class="mb-1">ChatGPT for Beginners
+                                </h5>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
+                                    3.55</small>
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>3.5L+
+                                    Learners
+                                </small>
+                                <small class="flex-fill text-center py-1 px-2"><i
+                                        class="fa fa-user me-2"></i>Beginner</small>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>4.5
+                                    Hrs</small>
+                                <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 0</small>
+                                <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
+                                        Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="course-item shadow">
+                            <div class="position-relative overflow-hidden text-light image">
+                                <img class="img-fluid" src="img/course-7.jpg" alt="">
+                                <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;"
+                                    class="px-2 py-1 fw-bold text-uppercase">FREE</div>
+
+                            </div>
+                            <div class="p-2 pb-0">
+
+                                <h5 class="mb-1">AWS for Beginners
+                                </h5>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
+                                    4.53</small>
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>1L+
+                                    Learners
+                                </small>
+                                <small class="flex-fill text-center py-1 px-2"><i
+                                        class="fa fa-user me-2"></i>Beginner</small>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>3.0
+                                    Hrs</small>
+                                <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 0</small>
+                                <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
+                                        Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="course-item shadow">
+                            <div class="position-relative overflow-hidden text-light image">
+                                <img class="img-fluid" src="img/course-8.jpg" alt="">
+                                <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#0ed44c;"
+                                    class="px-2 py-1 fw-bold text-uppercase">PAID</div>
+
+                            </div>
+                            <div class="p-2 pb-0">
+
+                                <h5 class="mb-1">Microsoft Azure Essentials
+                                </h5>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-center py-1 px-1"><i class="fa fa-star text-warning me-2"></i>
+                                    4.64</small>
+                                <small class="flex-fill text-center py-1 px-1"><i class="fa fa-user-graduate me-2"></i>4.4L+
+                                    Learners
+                                </small>
+                                <small class="flex-fill text-center py-1 px-1"><i
+                                        class="fa fa-user me-2"></i>Intermediate</small>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>3.5
+                                    Hrs</small>
+                                <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 149</small>
+                                <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
+                                        Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="course-item shadow">
+                            <div class="position-relative overflow-hidden text-light image">
+                                <img class="img-fluid" src="img/course-9.jpg" alt="">
+                                <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;"
+                                    class="px-2 py-1 fw-bold text-uppercase">FREE</div>
+
+                            </div>
+                            <div class="p-2 pb-0">
+
+                                <h5 class="mb-1">Introduction to MS Excel</h5>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
+                                    4.6</small>
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>4.2L+
+                                    Learners
+                                </small>
+                                <small class="flex-fill text-center py-1 px-2"><i
+                                        class="fa fa-user me-2"></i>Beginner</small>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>3.5
+                                    Hrs</small>
+                                <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 0</small>
+                                <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
+                                        Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="course-item shadow">
+                            <div class="position-relative overflow-hidden text-light image">
+                                <img class="img-fluid" src="img/course-10.jpg" alt="">
+                                <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#0ed44c;"
+                                    class="px-2 py-1 fw-bold text-uppercase">PAID</div>
+
+                            </div>
+                            <div class="p-2 pb-0">
+
+                                <h5 class="mb-1">Statistics For Data Science
+                                   
+                                    
+                                </h5>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-center py-1 px-1"><i class="fa fa-star text-warning me-2"></i>
+                                    4.55</small>
+                                <small class="flex-fill text-center py-1 px-1"><i class="fa fa-user-graduate me-2"></i>5.3L+
+                                    Learners
+                                </small>
+                                <small class="flex-fill text-center py-1 px-1"><i
+                                        class="fa fa-user me-2"></i>Intermediate</small>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>2.5
+                                    Hrs</small>
+                                <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 299</small>
+                                <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
+                                        Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="course-item shadow">
+                            <div class="position-relative overflow-hidden text-light image">
+                                <img class="img-fluid" src="img/course-11.jpg" alt="">
+                                <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;"
+                                    class="px-2 py-1 fw-bold text-uppercase">FREE</div>
+
+                            </div>
+                            <div class="p-2 pb-0">
+
+                                <h5 class="mb-1">Java Programming
+                                </h5>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
+                                    4.45</small>
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>5L+
+                                    Learners
+                                </small>
+                                <small class="flex-fill text-center py-1 px-2"><i
+                                        class="fa fa-user me-2"></i>Beginner</small>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>2.0
+                                    Hrs</small>
+                                <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 0</small>
+                                <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
+                                        Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="course-item shadow">
+                            <div class="position-relative overflow-hidden text-light image">
+                                <img class="img-fluid" src="img/course-12.png" alt="">
+                                <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;"
+                                    class="px-2 py-1 fw-bold text-uppercase">FREE</div>
+
+                            </div>
+                            <div class="p-2 pb-0">
+
+                                <h5 class="mb-1">C for Beginners
+                                </h5>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
+                                    4.5</small>
+                                <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>1.1L+
+                                    Learners
+                                </small>
+                                <small class="flex-fill text-center py-1 px-2"><i
+                                        class="fa fa-user me-2"></i>Beginner</small>
+                            </div>
+                            <div class="d-flex">
+                                <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>1.5
+                                    Hrs</small>
+                                <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 0</small>
+                                <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
+                                        Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp scroll-animate" data-wow-delay="0.2s">
-                    <div class="feature-card h-100 p-4 text-center">
-                        <div class="feature-icon mb-3">
-                            <i class="fas fa-chart-line text-primary" style="font-size: 3rem;"></i>
-                        </div>
-                        <h5 class="card-title mb-3">Exam Pattern Based Study Plans</h5>
-                        <p class="card-text">Strategic study plans designed specifically for each exam pattern and format.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp scroll-animate" data-wow-delay="0.3s">
-                    <div class="feature-card h-100 p-4 text-center">
-                        <div class="feature-icon mb-3">
-                            <i class="fas fa-chalkboard-teacher text-primary" style="font-size: 3rem;"></i>
-                        </div>
-                        <h5 class="card-title mb-3">Expert Faculty</h5>
-                        <p class="card-text">Learn from experienced faculty with years of expertise in competitive exam preparation.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp scroll-animate" data-wow-delay="0.4s">
-                    <div class="feature-card h-100 p-4 text-center">
-                        <div class="feature-icon mb-3">
-                            <i class="fas fa-question-circle text-primary" style="font-size: 3rem;"></i>
-                        </div>
-                        <h5 class="card-title mb-3">Regular Doubt-Solving</h5>
-                        <p class="card-text">Regular doubt-solving sessions to ensure complete understanding of concepts.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp scroll-animate" data-wow-delay="0.5s">
-                    <div class="feature-card h-100 p-4 text-center">
-                        <div class="feature-icon mb-3">
-                            <i class="fas fa-user-graduate text-primary" style="font-size: 3rem;"></i>
-                        </div>
-                        <h5 class="card-title mb-3">Personalized Mentorship</h5>
-                        <p class="card-text">Individual guidance and mentorship tailored to your learning needs and goals.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp scroll-animate" data-wow-delay="0.6s">
-                    <div class="feature-card h-100 p-4 text-center">
-                        <div class="feature-icon mb-3">
-                            <i class="fas fa-clipboard-check text-primary" style="font-size: 3rem;"></i>
-                        </div>
-                        <h5 class="card-title mb-3">Complete Preparation</h5>
-                        <p class="card-text">Comprehensive preparation covering both written exams and interview stages.</p>
-                    </div>
-                </div>
+                <nav class="mt-4 d-flex justify-content-center">
+                    <ul id="courses-pagination" class="pagination"></ul>
+                </nav>
+
             </div>
         </div>
-    </div>
+        <!-- Courses End -->
+        <script>
+        (function() {
+            var COURSES = [
+                { t: 'KVS Principal & Vice Principal Recorded Batch', u: 'https://fwlef.courses.store/301871?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-1.png' },
+                { t: 'UPSC (DOE Delhi) Principal & Vice Principal Recorded Batch', u: 'https://fwlef.courses.store/301694?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-2.jpg' },
+                { t: 'NVS Principal & Vice Principal Recorded Batch', u: 'https://fwlef.courses.store/368408?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-3.jpg' },
+                { t: 'EMRS Principal & Vice Principal Recorded Batch', u: 'https://fwlef.courses.store/504741?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-4.jpg' },
+                { t: 'UKPSC (Uttarakhand) Principal & Vice Principal Recorded Batch', u: 'https://fwlef.courses.store/474625?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-5.jpg' },
+                { t: 'Principal & Vice Principal Recorded batch with 5 Yrs Validity', u: 'https://fwlef.courses.store/474625?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-6.png' },
+                { t: 'Principal & Vice Principal recorded batch for KVS, NVS, UPSC, EMRS', u: 'https://fwlef.courses.store/711665?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-7.png'  },
+                { t: 'Principal & Vice Principal Post Specific (Admin & Finance) Recorded Batch', u: 'https://fwlef.courses.store/287594?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-8.png'  },
+                { t: 'Administration and Finance Mock Test For All Central Exams', u: 'https://fwlef.courses.store/604172?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp' , img: 'img/course-9.png'},
+                { t: 'UPSC Principal & Vice principal Test Series', u: 'https://fwlef.courses.store/413083?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-10.jpg' },
+                { t: 'KVS Principal & Vice Principal Test Series', u: 'https://fwlef.courses.store/413082?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-11.jpg' },
+                { t: 'NVS Principal & Vice Principal Test Series', u: 'https://fwlef.courses.store/413081?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-3.jpg' },
+                { t: 'EMRS Principal & Vice Principal Test Series', u: 'https://fwlef.courses.store/413080?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-4.jpg' },
+                { t: 'UKPSC (Uttarakhand) Principal & Vice Principal Test Series', u: 'https://fwlef.courses.store/499757?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-5.jpg' },
+                { t: 'KVS Assistant Section Officer (ASO) Recorded Batch', u: 'https://fwlef.courses.store/285969?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp' , img: 'img/course-1.png'},
+                { t: 'NVS Assistant Section Officer (ASO) Recorded Batch', u: 'https://fwlef.courses.store/475752?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-3.jpg' },
+                { t: 'AIIMS CRE AAO, JAO, Office Assistant, Assistant Recorded Batch', u: 'https://fwlef.courses.store/619678?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-12.jpg'  },
+                { t: 'KVS SSA (Senior Secretariat Assistant) Recorded batch', u: 'https://fwlef.courses.store/285987?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp' , img: 'img/course-1.png'},
+                { t: 'KVS JSA (Junior Secretariat Assistant) Recorded Batch', u: 'https://fwlef.courses.store/286103?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-11.jpg'  },
+                { t: 'AIIMS CRE AAO, JAO, Office Assistant, Assistant Test Series', u: 'https://fwlef.courses.store/619700?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-12.jpg' },
+                { t: 'NVS Assistant Commissioner (Academic) Recorded batch', u: 'https://fwlef.courses.store/440444?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-3.jpg' },
+                { t: 'NCERT Assistant Recorded Batch', u: 'https://fwlef.courses.store/392441?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-13.png' },
+                { t: 'Central Government Service Rules Recorded Batch', u: 'https://fwlef.courses.store/389177?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-14.jpg' },
+                { t: 'DSSSB PGT Political Science Recorded Batch', u: 'https://fwlef.courses.store/200130?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-15.png' },
+                { t: 'DSSSB PGT Commerce Recorded Batch', u: 'https://fwlef.courses.store/235037?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp' , img: 'img/course-16.jpg' },
+                { t: 'DSSSB PGT History Recorded batch', u: 'https://fwlef.courses.store/181274?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp' , img: 'img/course-17.jpg' },
+                { t: 'DSSSB Librarian Test Series', u: 'https://fwlef.courses.store/328165?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-18.jpg'  },
+                { t: 'CTET', u: 'https://fwlef.courses.store/' , img: 'img/course-19.jpg' },
+                { t: 'EMRS Accountant', u: 'https://fwlef.courses.store/' , img: 'img/course-4.jpg' },
+                { t: 'EMRS Hostel Warden', u: 'https://fwlef.courses.store/', img: 'img/course-4.jpg' },
+                { t: 'DSSB PRT', u: 'https://fwlef.courses.store/', img: 'img/course-15.png'  },
+                { t: 'KVS PRT', u: 'https://fwlef.courses.store/', img: 'img/course-1.png'  }
+            ];
+            var PER_PAGE = 12;
+            var grid = document.getElementById('courses-grid');
+            var pager = document.getElementById('courses-pagination');
 
-
-    <!-- Categories Start -->
-    <div class="container-xxl py-5 category">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center px-3">Categories</h6>
-                <h1 class="mb-5" style="color: var(--primary);">Popular Topics to Explore</h1>
-            </div>
-            <div class="row g-2 m-2">
-                <div class="col-lg-3 col-md-6  text-center">
-                    <div class="content shadow p-3 mb-2 wow fadeInUp" data-wow-delay="0.3s">
-
-                        <img src="https://ali-cdn-cp-assets-public.classplus.co/cp-store-ui-revamp/bgLessCatIcon/cat_0.png" class="img-fluid" alt="All Categories"></i>
-
-                        <h5 class="my-2">
-                            <a href="#" class="text-center">All Categories (49)</a>
-                        </h5>
+            function renderPage(p) {
+        var start = (p-1)*PER_PAGE;
+        var slice = COURSES.slice(start, start+PER_PAGE);
+        grid.innerHTML = slice.map(function(c){
+            return `
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="course-item shadow">
+                    <div class="position-relative overflow-hidden text-light image">
+                        <img class="img-fluid" src="${c.img ? c.img : 'img/course-1.jpg'}" alt="${c.t}">
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6  text-center">
-                    <div class="content shadow p-3 mb-2 wow fadeInUp" data-wow-delay="0.3s">
-
-                        <img src="https://ali-cdn-cp-assets-public.classplus.co/cp-store-ui-revamp/bgLessCatIcon/cat_82616.png" class="img-fluid" alt="Teaching Job Exams"></i>
-
-                        <h5 class="my-2">
-                            <a href="#" class="text-center">Teaching Job Exams (31)</a>
-                        </h5>
+                    <div class="p-2 pb-0">
+                        <h5 class="mb-1"><a href="${c.u}" target="_blank" class="text-dark">${c.t}</a></h5>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6  text-center">
-                    <div class="content shadow p-3 mb-2 wow fadeInUp" data-wow-delay="0.3s">
-
-                        <img src="https://ali-cdn-cp-assets-public.classplus.co/cp-store-ui-revamp/bgLessCatIcon/cat_762.png" class="img-fluid" alt="Govt. Jobs"></i>
-
-                        <h5 class="my-2">
-                            <a href="#" class="text-center">Govt. Jobs (23)</a>
-                        </h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6  text-center">
-                    <div class="content shadow p-3 mb-2 wow fadeInUp" data-wow-delay="0.3s">
-
-                        <img src="https://ali-cdn-cp-assets-public.classplus.co/cp-store-ui-revamp/bgLessCatIcon/cat_82540.png" class="img-fluid" alt="CTET & State TET Exams"></i>
-
-                        <h5 class="my-2">
-                            <a href="#" class="text-center">CTET & State TET Exams (3)</a>
-                        </h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6  text-center">
-                    <div class="content shadow p-3 mb-2 wow fadeInUp" data-wow-delay="0.3s">
-
-                        <img src="img/cat.png" class="img-fluid" alt="Test Series"></i>
-
-                        <h5 class="my-2">
-                            <a href="#" class="text-center">Test Series (2)</a>
-                        </h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6  text-center">
-                    <div class="content shadow p-3 mb-2 wow fadeInUp" data-wow-delay="0.3s">
-
-                        <img src="https://ali-cdn-cp-assets-public.classplus.co/cp-store-ui-revamp/bgLessCatIcon/cat_9.png" class="img-fluid" alt="Other State Exams"></i>
-
-                        <h5 class="my-2">
-                            <a href="#" class="text-center">Other State Exams (1)</a>
-                        </h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6  text-center">
-                    <div class="content shadow p-3 mb-2 wow fadeInUp" data-wow-delay="0.3s">
-
-                        <img src="https://ali-cdn-cp-assets-public.classplus.co/cp-store-ui-revamp/bgLessCatIcon/cat_20.png" class="img-fluid" alt="UPSC - CSE"></i>
-
-                        <h5 class="my-2">
-                            <a href="#" class="text-center">UPSC - CSE (1)</a>
-                        </h5>
+                    <div class="d-flex">
+                        <small class="text-primary py-1 px-2 fw-bold fs-6 ms-auto">
+                            <a href="${c.u}" target="_blank">Enroll Now </a>
+                            <i class="fa fa-chevron-right me-2 fs-10"></i>
+                        </small>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Categories End -->
+            `;
+        }).join('');
 
-
-
-
-    <!-- Courses Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center px-3">Popular Courses</h6>
-                <h1 class="mb-5" style="color: var(--secondary);">Explore new and trending free online courses</h1>
-            </div>
-           <div id="courses-grid" class="row g-4 py-2">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="course-item shadow">
-                        <div class="position-relative overflow-hidden text-light image">
-                            <img class="img-fluid" src="img/course-2.jpg" alt="">
-                            <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;"
-                                class="px-2 py-1 fw-bold text-uppercase">FREE</div>
-
-                        </div>
-                        <div class="p-2 pb-0">
-
-                            <h5 class="mb-1"><a href="single.html" class="text-dark">HTML Course for Beginners</a> </h5>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
-                                4.55</small>
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>5.8L+
-                                Learners
-                            </small>
-                            <small class="flex-fill text-center py-1 px-2"><i
-                                    class="fa fa-user me-2"></i>Beginner</small>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>2.0
-                                Hrs</small>
-                            <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 0</small>
-                            <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
-                                    Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="course-item shadow">
-                        <div class="position-relative overflow-hidden text-light image">
-                            <img class="img-fluid" src="img/course-2.jpg" alt="">
-                            <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#0ed44c;"
-                                class="px-2 py-1 fw-bold text-uppercase">PAID</div>
-
-                        </div>
-                        <div class="p-2 pb-0">
-
-                            <h5 class="mb-1">Front End Development-CSS
-                            </h5>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
-                                4.55</small>
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>5.2L+
-                                Learners
-                            </small>
-                            <small class="flex-fill text-center py-1 px-2"><i
-                                    class="fa fa-user me-2"></i>Beginner</small>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>4.0
-                                Hrs</small>
-                            <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 199</small>
-                            <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
-                                    Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="course-item shadow">
-                        <div class="position-relative overflow-hidden text-light image">
-                            <img class="img-fluid" src="img/course-3.jpg" alt="">
-                            <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;"
-                                class="px-2 py-1 fw-bold text-uppercase">FREE</div>
-
-                        </div>
-                        <div class="p-2 pb-0">
-
-                            <h5 class="mb-1">Introduction to JavaScript
-                            </h5>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
-                                4.46</small>
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>76L+
-                                Learners
-                            </small>
-                            <small class="flex-fill text-center py-1 px-2"><i
-                                    class="fa fa-user me-2"></i>Beginner</small>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>2.5
-                                Hrs</small>
-                            <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 0</small>
-                            <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
-                                    Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="course-item shadow">
-                        <div class="position-relative overflow-hidden text-light image">
-                            <img class="img-fluid" src="img/course-4.jpg" alt="">
-                            <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#0ed44c;"
-                                class="px-2 py-1 fw-bold text-uppercase">PAID</div>
-
-                        </div>
-                        <div class="p-2 pb-0">
-
-                            <h5 class="mb-1">Python Programming
-                            </h5>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
-                                3.54</small>
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>3.3L+
-                                Learners
-                            </small>
-                            <small class="flex-fill text-center py-1 px-2"><i
-                                    class="fa fa-user me-2"></i>Beginner</small>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>3.0
-                                Hrs</small>
-                            <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 299</small>
-                            <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
-                                    Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="course-item shadow">
-                        <div class="position-relative overflow-hidden text-light image">
-                            <img class="img-fluid" src="img/course-5.jpg" alt="">
-                            <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;"
-                                class="px-2 py-1 fw-bold text-uppercase">FREE</div>
-
-                        </div>
-                        <div class="p-2 pb-0">
-
-                            <h5 class="mb-1">SQL for Data Science
-                            </h5>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-center py-1 px-1"><i class="fa fa-star text-warning me-2"></i>
-                                4.54</small>
-                            <small class="flex-fill text-center py-1 px-1"><i class="fa fa-user-graduate me-2"></i>1.3L+
-                                Learners
-                            </small>
-                            <small class="flex-fill text-center py-1 px-1"><i
-                                    class="fa fa-user me-2"></i>Intermediate</small>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>5.0
-                                Hrs</small>
-                            <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 0</small>
-                            <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
-                                    Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="course-item shadow">
-                        <div class="position-relative overflow-hidden text-light image">
-                            <img class="img-fluid" src="img/course-6.jpg" alt="">
-                            <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;"
-                                class="px-2 py-1 fw-bold text-uppercase">FREE</div>
-
-                        </div>
-                        <div class="p-2 pb-0">
-
-                            <h5 class="mb-1">ChatGPT for Beginners
-                            </h5>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
-                                3.55</small>
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>3.5L+
-                                Learners
-                            </small>
-                            <small class="flex-fill text-center py-1 px-2"><i
-                                    class="fa fa-user me-2"></i>Beginner</small>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>4.5
-                                Hrs</small>
-                            <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 0</small>
-                            <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
-                                    Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="course-item shadow">
-                        <div class="position-relative overflow-hidden text-light image">
-                            <img class="img-fluid" src="img/course-7.jpg" alt="">
-                            <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;"
-                                class="px-2 py-1 fw-bold text-uppercase">FREE</div>
-
-                        </div>
-                        <div class="p-2 pb-0">
-
-                            <h5 class="mb-1">AWS for Beginners
-                            </h5>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
-                                4.53</small>
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>1L+
-                                Learners
-                            </small>
-                            <small class="flex-fill text-center py-1 px-2"><i
-                                    class="fa fa-user me-2"></i>Beginner</small>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>3.0
-                                Hrs</small>
-                            <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 0</small>
-                            <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
-                                    Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="course-item shadow">
-                        <div class="position-relative overflow-hidden text-light image">
-                            <img class="img-fluid" src="img/course-8.jpg" alt="">
-                            <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#0ed44c;"
-                                class="px-2 py-1 fw-bold text-uppercase">PAID</div>
-
-                        </div>
-                        <div class="p-2 pb-0">
-
-                            <h5 class="mb-1">Microsoft Azure Essentials
-                            </h5>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-center py-1 px-1"><i class="fa fa-star text-warning me-2"></i>
-                                4.64</small>
-                            <small class="flex-fill text-center py-1 px-1"><i class="fa fa-user-graduate me-2"></i>4.4L+
-                                Learners
-                            </small>
-                            <small class="flex-fill text-center py-1 px-1"><i
-                                    class="fa fa-user me-2"></i>Intermediate</small>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>3.5
-                                Hrs</small>
-                            <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 149</small>
-                            <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
-                                    Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="course-item shadow">
-                        <div class="position-relative overflow-hidden text-light image">
-                            <img class="img-fluid" src="img/course-9.jpg" alt="">
-                            <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;"
-                                class="px-2 py-1 fw-bold text-uppercase">FREE</div>
-
-                        </div>
-                        <div class="p-2 pb-0">
-
-                            <h5 class="mb-1">Introduction to MS Excel</h5>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
-                                4.6</small>
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>4.2L+
-                                Learners
-                            </small>
-                            <small class="flex-fill text-center py-1 px-2"><i
-                                    class="fa fa-user me-2"></i>Beginner</small>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>3.5
-                                Hrs</small>
-                            <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 0</small>
-                            <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
-                                    Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="course-item shadow">
-                        <div class="position-relative overflow-hidden text-light image">
-                            <img class="img-fluid" src="img/course-10.jpg" alt="">
-                            <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#0ed44c;"
-                                class="px-2 py-1 fw-bold text-uppercase">PAID</div>
-
-                        </div>
-                        <div class="p-2 pb-0">
-
-                            <h5 class="mb-1">Statistics For Data Science
-                               
-                                
-                            </h5>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-center py-1 px-1"><i class="fa fa-star text-warning me-2"></i>
-                                4.55</small>
-                            <small class="flex-fill text-center py-1 px-1"><i class="fa fa-user-graduate me-2"></i>5.3L+
-                                Learners
-                            </small>
-                            <small class="flex-fill text-center py-1 px-1"><i
-                                    class="fa fa-user me-2"></i>Intermediate</small>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>2.5
-                                Hrs</small>
-                            <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 299</small>
-                            <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
-                                    Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="course-item shadow">
-                        <div class="position-relative overflow-hidden text-light image">
-                            <img class="img-fluid" src="img/course-11.jpg" alt="">
-                            <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;"
-                                class="px-2 py-1 fw-bold text-uppercase">FREE</div>
-
-                        </div>
-                        <div class="p-2 pb-0">
-
-                            <h5 class="mb-1">Java Programming
-                            </h5>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
-                                4.45</small>
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>5L+
-                                Learners
-                            </small>
-                            <small class="flex-fill text-center py-1 px-2"><i
-                                    class="fa fa-user me-2"></i>Beginner</small>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>2.0
-                                Hrs</small>
-                            <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 0</small>
-                            <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
-                                    Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="course-item shadow">
-                        <div class="position-relative overflow-hidden text-light image">
-                            <img class="img-fluid" src="img/course-12.png" alt="">
-                            <div style="position:absolute;top: 15px;left: 16px; font-size:12px; border-radius:3px; background-color:#fb873f;"
-                                class="px-2 py-1 fw-bold text-uppercase">FREE</div>
-
-                        </div>
-                        <div class="p-2 pb-0">
-
-                            <h5 class="mb-1">C for Beginners
-                            </h5>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-star text-warning me-2"></i>
-                                4.5</small>
-                            <small class="flex-fill text-center py-1 px-2"><i class="fa fa-user-graduate me-2"></i>1.1L+
-                                Learners
-                            </small>
-                            <small class="flex-fill text-center py-1 px-2"><i
-                                    class="fa fa-user me-2"></i>Beginner</small>
-                        </div>
-                        <div class="d-flex">
-                            <small class="flex-fill text-left p-2 px-2"><i class="fa fa-clock me-2"></i>1.5
-                                Hrs</small>
-                            <small class="py-1 px-2 fw-bold fs-6 text-center">₹ 0</small>
-                            <small class=" text-primary py-1 px-2 fw-bold fs-6" style="float:right;"><a href="#">Enroll
-                                    Now </a><i class="fa fa-chevron-right me-2 fs-10"></i></small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <nav class="mt-4 d-flex justify-content-center">
-                <ul id="courses-pagination" class="pagination"></ul>
-            </nav>
-
-        </div>
-    </div>
-    <!-- Courses End -->
-    <script>
-    (function() {
-        var COURSES = [
-            { t: 'KVS Principal & Vice Principal Recorded Batch', u: 'https://fwlef.courses.store/301871?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-1.png' },
-            { t: 'UPSC (DOE Delhi) Principal & Vice Principal Recorded Batch', u: 'https://fwlef.courses.store/301694?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-2.jpg' },
-            { t: 'NVS Principal & Vice Principal Recorded Batch', u: 'https://fwlef.courses.store/368408?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-3.jpg' },
-            { t: 'EMRS Principal & Vice Principal Recorded Batch', u: 'https://fwlef.courses.store/504741?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-4.jpg' },
-            { t: 'UKPSC (Uttarakhand) Principal & Vice Principal Recorded Batch', u: 'https://fwlef.courses.store/474625?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-5.jpg' },
-            { t: 'Principal & Vice Principal Recorded batch with 5 Yrs Validity', u: 'https://fwlef.courses.store/474625?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-6.png' },
-            { t: 'Principal & Vice Principal recorded batch for KVS, NVS, UPSC, EMRS', u: 'https://fwlef.courses.store/711665?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-7.png'  },
-            { t: 'Principal & Vice Principal Post Specific (Admin & Finance) Recorded Batch', u: 'https://fwlef.courses.store/287594?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-8.png'  },
-            { t: 'Administration and Finance Mock Test For All Central Exams', u: 'https://fwlef.courses.store/604172?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp' , img: 'img/course-9.png'},
-            { t: 'UPSC Principal & Vice principal Test Series', u: 'https://fwlef.courses.store/413083?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-10.jpg' },
-            { t: 'KVS Principal & Vice Principal Test Series', u: 'https://fwlef.courses.store/413082?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-11.jpg' },
-            { t: 'NVS Principal & Vice Principal Test Series', u: 'https://fwlef.courses.store/413081?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-3.jpg' },
-            { t: 'EMRS Principal & Vice Principal Test Series', u: 'https://fwlef.courses.store/413080?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-4.jpg' },
-            { t: 'UKPSC (Uttarakhand) Principal & Vice Principal Test Series', u: 'https://fwlef.courses.store/499757?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-5.jpg' },
-            { t: 'KVS Assistant Section Officer (ASO) Recorded Batch', u: 'https://fwlef.courses.store/285969?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp' , img: 'img/course-1.png'},
-            { t: 'NVS Assistant Section Officer (ASO) Recorded Batch', u: 'https://fwlef.courses.store/475752?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-3.jpg' },
-            { t: 'AIIMS CRE AAO, JAO, Office Assistant, Assistant Recorded Batch', u: 'https://fwlef.courses.store/619678?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-12.jpg'  },
-            { t: 'KVS SSA (Senior Secretariat Assistant) Recorded batch', u: 'https://fwlef.courses.store/285987?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp' , img: 'img/course-1.png'},
-            { t: 'KVS JSA (Junior Secretariat Assistant) Recorded Batch', u: 'https://fwlef.courses.store/286103?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-11.jpg'  },
-            { t: 'AIIMS CRE AAO, JAO, Office Assistant, Assistant Test Series', u: 'https://fwlef.courses.store/619700?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-12.jpg' },
-            { t: 'NVS Assistant Commissioner (Academic) Recorded batch', u: 'https://fwlef.courses.store/440444?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-3.jpg' },
-            { t: 'NCERT Assistant Recorded Batch', u: 'https://fwlef.courses.store/392441?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-13.png' },
-            { t: 'Central Government Service Rules Recorded Batch', u: 'https://fwlef.courses.store/389177?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-14.jpg' },
-            { t: 'DSSSB PGT Political Science Recorded Batch', u: 'https://fwlef.courses.store/200130?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-15.png' },
-            { t: 'DSSSB PGT Commerce Recorded Batch', u: 'https://fwlef.courses.store/235037?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp' , img: 'img/course-16.jpg' },
-            { t: 'DSSSB PGT History Recorded batch', u: 'https://fwlef.courses.store/181274?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp' , img: 'img/course-17.jpg' },
-            { t: 'DSSSB Librarian Test Series', u: 'https://fwlef.courses.store/328165?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp', img: 'img/course-18.jpg'  },
-            { t: 'CTET', u: 'https://fwlef.courses.store/' , img: 'img/course-19.jpg' },
-            { t: 'EMRS Accountant', u: 'https://fwlef.courses.store/' , img: 'img/course-4.jpg' },
-            { t: 'EMRS Hostel Warden', u: 'https://fwlef.courses.store/', img: 'img/course-4.jpg' },
-            { t: 'DSSB PRT', u: 'https://fwlef.courses.store/', img: 'img/course-15.png'  },
-            { t: 'KVS PRT', u: 'https://fwlef.courses.store/', img: 'img/course-1.png'  }
-        ];
-        var PER_PAGE = 12;
-        var grid = document.getElementById('courses-grid');
-        var pager = document.getElementById('courses-pagination');
-
-        function renderPage(p) {
-    var start = (p-1)*PER_PAGE;
-    var slice = COURSES.slice(start, start+PER_PAGE);
-    grid.innerHTML = slice.map(function(c){
-        return `
-        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="course-item shadow">
-                <div class="position-relative overflow-hidden text-light image">
-                    <img class="img-fluid" src="${c.img ? c.img : 'img/course-1.jpg'}" alt="${c.t}">
-                </div>
-                <div class="p-2 pb-0">
-                    <h5 class="mb-1"><a href="${c.u}" target="_blank" class="text-dark">${c.t}</a></h5>
-                </div>
-                <div class="d-flex">
-                    <small class="text-primary py-1 px-2 fw-bold fs-6 ms-auto">
-                        <a href="${c.u}" target="_blank">Enroll Now </a>
-                        <i class="fa fa-chevron-right me-2 fs-10"></i>
-                    </small>
-                </div>
-            </div>
-        </div>
-        `;
-    }).join('');
-
-    var pages = Math.ceil(COURSES.length / PER_PAGE);
-    pager.innerHTML = '';
-    
-    function li(disabled, active, label) {
-        var cls = 'page-item' + (disabled ? ' disabled' : '') + (active ? ' active' : '');
-        return `<li class="${cls}"><a class="page-link" href="#">${label}</a></li>`;
-    }
-    
-    var html = '';
-    html += li(p === 1, false, 'Prev');
-    for (var i = 1; i <= pages; i++) html += li(false, p === i, i);
-    html += li(p === pages, false, 'Next');
-    pager.innerHTML = html;
-    
-    Array.prototype.forEach.call(pager.querySelectorAll('.page-item'), function(node, idx){
-        node.addEventListener('click', function(e){
-            e.preventDefault();
-            if (idx === 0 && p > 1) return renderPage(p - 1);
-            if (idx === pages + 1 && p < pages) return renderPage(p + 1);
-            if (idx > 0 && idx < pages + 1) return renderPage(idx);
+        var pages = Math.ceil(COURSES.length / PER_PAGE);
+        pager.innerHTML = '';
+        
+        function li(disabled, active, label) {
+            var cls = 'page-item' + (disabled ? ' disabled' : '') + (active ? ' active' : '');
+            return `<li class="${cls}"><a class="page-link" href="#">${label}</a></li>`;
+        }
+        
+        var html = '';
+        html += li(p === 1, false, 'Prev');
+        for (var i = 1; i <= pages; i++) html += li(false, p === i, i);
+        html += li(p === pages, false, 'Next');
+        pager.innerHTML = html;
+        
+        Array.prototype.forEach.call(pager.querySelectorAll('.page-item'), function(node, idx){
+            node.addEventListener('click', function(e){
+                e.preventDefault();
+                if (idx === 0 && p > 1) return renderPage(p - 1);
+                if (idx === pages + 1 && p < pages) return renderPage(p + 1);
+                if (idx > 0 && idx < pages + 1) return renderPage(idx);
+            });
         });
-    });
-}
+    }
 
-        renderPage(1);
-    })();
-    </script>
+            renderPage(1);
+        })();
+        </script>
+    </div>
 
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-4 col-md-6">
-                    <h4 class="text-white mb-3">Quick Link</h4>
-                    <p><a class="text-light" href="about.html">About Us</a></p>
-                    <p><a class="text-light" href="contact.html">Contact Us</a></p>
-                  
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <h4 class="text-white mb-3">Contact</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Delhi, Gurgaon and Dehradun</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>8447410108</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>StudyPortalAcademy@gmail.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" target="_blank" href="https://www.instagram.com/study_portal_academy?igsh=MTZxZGc3bHI1ajlrdw%3D%3D&utm_source=qr"><i class="fab fa-instagram"></i></a>
-                        <a class="btn btn-outline-light btn-social" target="_blank" href="https://wa.me/918447410108"><i class="fab fa-whatsapp"></i></a>
-                        <a class="btn btn-outline-light btn-social" target="_blank" href="https://www.facebook.com/profile.php?id=100018429821346"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" target="_blank" href="https://www.youtube.com/c/StudyPortalDrVijay?sub_confirmation=1"><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" target="_blank" href="https://t.me/StudyPortalOfficial"><i class="fab fa-telegram-plane"></i></a>
+    <div class="footer-wrapper">
+        <!-- Footer Start -->
+        <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-lg-4 col-md-6">
+                        <h4 class="text-white mb-3">Quick Link</h4>
+                        <p><a class="text-light" href="about.html">About Us</a></p>
+                        <p><a class="text-light" href="contact.html">Contact Us</a></p>
+                      
                     </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <h4 class="text-white mb-3">Get the App</h4>
-                    <div class="d-flex mt-1 store-badges">
-                        <a class="store-badge" target="_blank" href="https://bit.ly/3KuKHKg"><i class="fab fa-android"></i> Download for Android</a>
-                        <a class="store-badge" target="_blank" href="https://apple.co/3IWWOQ2"><i class="fab fa-apple"></i> Download on App Store</a>
+                    <div class="col-lg-4 col-md-6">
+                        <h4 class="text-white mb-3">Contact</h4>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Delhi, Gurgaon and Dehradun</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>8447410108</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>StudyPortalAcademy@gmail.com</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social" target="_blank" href="https://www.instagram.com/study_portal_academy?igsh=MTZxZGc3bHI1ajlrdw%3D%3D&utm_source=qr"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-outline-light btn-social" target="_blank" href="https://wa.me/918447410108"><i class="fab fa-whatsapp"></i></a>
+                            <a class="btn btn-outline-light btn-social" target="_blank" href="https://www.facebook.com/profile.php?id=100018429821346"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social" target="_blank" href="https://www.youtube.com/c/StudyPortalDrVijay?sub_confirmation=1"><i class="fab fa-youtube"></i></a>
+                            <a class="btn btn-outline-light btn-social" target="_blank" href="https://t.me/StudyPortalOfficial"><i class="fab fa-telegram-plane"></i></a>
+                        </div>
                     </div>
-                </div>
 
-                
-            </div>
-        </div>
-        <div class="container">
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="index.html">Study Portal</a>, All Right Reserved.
-
+                    <div class="col-lg-4 col-md-6">
+                        <h4 class="text-white mb-3">Get the App</h4>
+                        <div class="d-flex mt-1 store-badges">
+                            <a class="store-badge" target="_blank" href="https://bit.ly/3KuKHKg"><i class="fab fa-android"></i> Download for Android</a>
+                            <a class="store-badge" target="_blank" href="https://apple.co/3IWWOQ2"><i class="fab fa-apple"></i> Download on App Store</a>
+                        </div>
                     </div>
+
+                    
                 </div>
             </div>
+            <div class="container">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="index.html">Study Portal</a>, All Right Reserved.
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <!-- Footer End -->
+        <!-- Footer End -->
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-    <!-- Floating WhatsApp -->
-    <div class="floating-whatsapp">
-        <a target="_blank" href="https://wa.me/918447410108" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp fa-2x"></i></a>
-    </div>
+        <!-- Floating WhatsApp -->
+        <div class="floating-whatsapp">
+            <a target="_blank" href="https://wa.me/918447410108" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp fa-2x"></i></a>
+        </div>
 
-    <!-- Floating YouTube -->
-    <div class="floating-youtube">
-        <a target="_blank" href="https://www.youtube.com/c/StudyPortalDrVijay?sub_confirmation=1" aria-label="Visit our YouTube channel"><i class="fab fa-youtube fa-2x"></i></a>
-    </div>
+        <!-- Floating YouTube -->
+        <div class="floating-youtube">
+            <a target="_blank" href="https://www.youtube.com/c/StudyPortalDrVijay?sub_confirmation=1" aria-label="Visit our YouTube channel"><i class="fab fa-youtube fa-2x"></i></a>
+        </div>
 
-    <!-- Floating YouTube -->
-    <div class="floating-youtube">
-        <a target="_blank" href="https://www.youtube.com/c/StudyPortalDrVijay?sub_confirmation=1" aria-label="Visit our YouTube channel"><i class="fab fa-youtube fa-2x"></i></a>
+        <!-- Floating YouTube -->
+        <div class="floating-youtube">
+            <a target="_blank" href="https://www.youtube.com/c/StudyPortalDrVijay?sub_confirmation=1" aria-label="Visit our YouTube channel"><i class="fab fa-youtube fa-2x"></i></a>
+        </div>
     </div>
 
 
@@ -818,9 +825,511 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<!-- Modal for showing courses -->
+<div class="modal fade" id="coursesModal" tabindex="-1" aria-labelledby="coursesModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content rounded-4">
+      <div class="modal-header">
+        <h5 class="modal-title" id="coursesModalLabel">Courses</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-4" id="modal-courses-container">
+          <!-- Course cards will be injected here dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+  const coursesData = {
+    all_categories: [
+      
+      {
+        img: "img/course-6.png",
+        title: "NVS Assistant Commissioner (Academic) Recorded batch",
+        url: "https://fwlef.courses.store/440444?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+      },
+      {
+        img: "img/course-3.jpg",
+        title: "NVS Assistant Commissioner (Administration) Recorded batch (Valid till Exam 2024)",
+        url: "https://fwlef.courses.store/440387?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+      },
+      {
+        img: "img/course-11.jpg",
+        title: "KVS Assistant Commissioner (Direct) Recorded batch",
+        url: "https://fwlef.courses.store/284857?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+      },
+      {
+    img: "img/course-1.png", 
+    title: "KVS Principal & Vice-Principal Live Batch - Starting From 6th October 2025",
+    url: "https://fwlef.courses.store/734119?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-4.jpg",
+    title: "EMRS Principal Live Batch - Starting From 6th October 2025",
+    url: "https://fwlef.courses.store/734120?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-11.jpg",
+    title: "KVS Principal & Vice Principal Recorded Batch",
+    url: "https://fwlef.courses.store/301871?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-2.jpg",
+    title: "UPSC (DOE Delhi) Principal & Vice Principal Recorded Batch",
+    url: "https://fwlef.courses.store/301694?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-3.jpg",
+    title: "NVS Principal & Vice Principal Recorded Batch",
+    url: "https://fwlef.courses.store/368408?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-4.jpg",
+    title: "EMRS Principal & Vice Principal Recorded Batch",
+    url: "https://fwlef.courses.store/504741?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-5.jpg",
+    title: "UKPSC (Uttarakhand) Principal & Vice Principal Recorded Batch",
+    url: "https://fwlef.courses.store/474625?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-7.png",
+    title: "Principal & Vice Principal Recorded batch with 5 Yrs Validity",
+    url: "https://fwlef.courses.store/474625?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-6.png",
+    title: "Principal & Vice Principal recorded batch for KVS, NVS, UPSC, EMRS",
+    url: "https://fwlef.courses.store/711665?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-8.png",
+    title: "Principal & Vice Principal Post Specific (Admin & Finance) Recorded Batch",
+    url: "https://fwlef.courses.store/287594?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-9.png",
+    title: "Administration and Finance Mock Test For All Central Exams",
+    url: "https://fwlef.courses.store/604172?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-2.jpg",
+    title: "UPSC Principal & Vice principal Test Series",
+    url: "https://fwlef.courses.store/413083?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-20.jpg",
+    title: "KVS Principal & Vice Principal Test Series",
+    url: "https://fwlef.courses.store/413082?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-20.jpg",
+    title: "NVS Principal & Vice Principal Test Series",
+    url: "https://fwlef.courses.store/413081?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-20.jpg",
+    title: "EMRS Principal & Vice Principal Test Series",
+    url: "https://fwlef.courses.store/413080?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-20.jpg",
+    title: "UKPSC (Uttarakhand) Principal & Vice Principal Test Series",
+    url: "https://fwlef.courses.store/499757?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-11.jpg",
+    title: "KVS Principal & Vice Principal Limited Department Competitive Exam (LDCE-Departmental Vacancy Recorded batch",
+    url: "https://fwlef.courses.store/287760?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-23.jpg", 
+    title: "DSSSB PGT Political Science Recorded Batch",
+    url: "https://fwlef.courses.store/200130?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-16.jpg",
+    title: "DSSSB PGT Commerce Recorded Batch",
+    url: "https://fwlef.courses.store/235037?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-17.jpg",
+    title: "DSSSB PGT History Recorded batch",
+    url: "https://fwlef.courses.store/181274?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-18.jpg",
+    title: "DSSSB Librarian Test Series",
+    url: "https://fwlef.courses.store/328165?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-11.jpg",
+    title: "KVS PGT Commerce Recorded Batch",
+    url: "https://fwlef.courses.store/734058?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-4.jpg",
+    title: "EMRS PGT Commerce Recorded Batch",
+    url: "https://fwlef.courses.store/734057?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-21.jpg",
+    title: "DSSSB TGT Social Science (SST) Recorded Batch",
+    url: "https://fwlef.courses.store/184392?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-15.png",
+    title: "DSSSB PRT Recorded Batch",
+    url: "https://fwlef.courses.store/324621?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-21.jpg", 
+    title: "CTET - TGT - सामाजिक विज्ञान (Social Science SST) Recorded Course (Level 2)",
+    url: "https://fwlef.courses.store/706597?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-19.jpg", 
+    title: "CTET PRT Level 1 Recorded Course",
+    url: "https://fwlef.courses.store/706585?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-22.png", 
+    title: "CTET TGT Level 2 Math & Science Recorded Course",
+    url: "https://fwlef.courses.store/706579?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-11.jpg",
+    title: "KVS Assistant Section Officer (ASO) Recorded Batch",
+    url: "https://fwlef.courses.store/285969?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-1.png",
+    title: "NVS Assistant Section Officer (ASO) Recorded Batch",
+    url: "https://fwlef.courses.store/475752?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-1.png",
+    title: "KVS SSA (Senior Secretariat Assistant) Recorded batch",
+    url: "https://fwlef.courses.store/285987?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-11.jpg",
+    title: "KVS JSA (Junior Secretariat Assistant) Recorded Batch",
+    url: "https://fwlef.courses.store/286103?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-13.png",
+    title: "NCERT Assistant Recorded Batch",
+    url: "https://fwlef.courses.store/392441?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-14.jpg",
+    title: "Central Government Service Rules Recorded Batch",
+    url: "https://fwlef.courses.store/389177?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-4.jpg",
+    title: "EMRS Hostel Warden Recorded Batch",
+    url: "https://fwlef.courses.store/734128?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-4.jpg",
+    title: "EMRS Accountant Recorded Batch",
+    url: "https://fwlef.courses.store/734060?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-1.png",
+    title: "KVS Stenographer Grade-2 Recorded Batch",
+    url: "https://fwlef.courses.store/324621?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+     {
+        img: "img/course-12.jpg",
+        title: "AIIMS CRE AAO, JAO, Office Assistant, Assistant Recorded Batch",
+        url: " https://fwlef.courses.store/619678?utm_source%3Dother%26utm_medium%3Dtutor-course-referral%26utm_campaign%3Dcourse-overview-webapp"
+      },
+      {
+        img: "img/course-20.jpg",
+        title: "AIIMS CRE AAO, JAO, Office Assistant, Assistant Test Series ",
+        url: "https://fwlef.courses.store/619700?utm_source%3Dother%26utm_medium%3Dtutor-course-referral%26utm_campaign%3Dcourse-overview-webapp"
+      }
+
+    ],
+
+    assistant_commissioner: [
+      {
+        img: "img/course-6.png",
+        title: "NVS Assistant Commissioner (Academic) Recorded batch",
+        url: "https://fwlef.courses.store/440444?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+      },
+      {
+        img: "img/course-3.jpg",
+        title: "NVS Assistant Commissioner (Administration) Recorded batch (Valid till Exam 2024)",
+        url: "https://fwlef.courses.store/440387?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+      },
+      {
+        img: "img/course-11.jpg",
+        title: "KVS Assistant Commissioner (Direct) Recorded batch",
+        url: "https://fwlef.courses.store/284857?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+      },
+      
+    ],
+
+    principal_vice_principal: [
+  {
+    img: "img/course-1.png", 
+    title: "KVS Principal & Vice-Principal Live Batch - Starting From 6th October 2025",
+    url: "https://fwlef.courses.store/734119?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-4.jpg",
+    title: "EMRS Principal Live Batch - Starting From 6th October 2025",
+    url: "https://fwlef.courses.store/734120?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-11.jpg",
+    title: "KVS Principal & Vice Principal Recorded Batch",
+    url: "https://fwlef.courses.store/301871?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-2.jpg",
+    title: "UPSC (DOE Delhi) Principal & Vice Principal Recorded Batch",
+    url: "https://fwlef.courses.store/301694?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-3.jpg",
+    title: "NVS Principal & Vice Principal Recorded Batch",
+    url: "https://fwlef.courses.store/368408?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-4.jpg",
+    title: "EMRS Principal & Vice Principal Recorded Batch",
+    url: "https://fwlef.courses.store/504741?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-5.jpg",
+    title: "UKPSC (Uttarakhand) Principal & Vice Principal Recorded Batch",
+    url: "https://fwlef.courses.store/474625?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-7.png",
+    title: "Principal & Vice Principal Recorded batch with 5 Yrs Validity",
+    url: "https://fwlef.courses.store/474625?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-6.png",
+    title: "Principal & Vice Principal recorded batch for KVS, NVS, UPSC, EMRS",
+    url: "https://fwlef.courses.store/711665?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-8.png",
+    title: "Principal & Vice Principal Post Specific (Admin & Finance) Recorded Batch",
+    url: "https://fwlef.courses.store/287594?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-9.png",
+    title: "Administration and Finance Mock Test For All Central Exams",
+    url: "https://fwlef.courses.store/604172?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-2.jpg",
+    title: "UPSC Principal & Vice principal Test Series",
+    url: "https://fwlef.courses.store/413083?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-20.jpg",
+    title: "KVS Principal & Vice Principal Test Series",
+    url: "https://fwlef.courses.store/413082?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-20.jpg",
+    title: "NVS Principal & Vice Principal Test Series",
+    url: "https://fwlef.courses.store/413081?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-20.jpg",
+    title: "EMRS Principal & Vice Principal Test Series",
+    url: "https://fwlef.courses.store/413080?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-20.jpg",
+    title: "UKPSC (Uttarakhand) Principal & Vice Principal Test Series",
+    url: "https://fwlef.courses.store/499757?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-11.jpg",
+    title: "KVS Principal & Vice Principal Limited Department Competitive Exam (LDCE-Departmental Vacancy Recorded batch",
+    url: "https://fwlef.courses.store/287760?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  }
+],
+
+    pgt_tgt_prt: [
+  {
+    img: "img/course-23.jpg", 
+    title: "DSSSB PGT Political Science Recorded Batch",
+    url: "https://fwlef.courses.store/200130?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-16.jpg",
+    title: "DSSSB PGT Commerce Recorded Batch",
+    url: "https://fwlef.courses.store/235037?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-17.jpg",
+    title: "DSSSB PGT History Recorded batch",
+    url: "https://fwlef.courses.store/181274?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-18.jpg",
+    title: "DSSSB Librarian Test Series",
+    url: "https://fwlef.courses.store/328165?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-11.jpg",
+    title: "KVS PGT Commerce Recorded Batch",
+    url: "https://fwlef.courses.store/734058?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-4.jpg",
+    title: "EMRS PGT Commerce Recorded Batch",
+    url: "https://fwlef.courses.store/734057?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-21.jpg",
+    title: "DSSSB TGT Social Science (SST) Recorded Batch",
+    url: "https://fwlef.courses.store/184392?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-15.png",
+    title: "DSSSB PRT Recorded Batch",
+    url: "https://fwlef.courses.store/324621?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  }
+],
+
+    teacher_eligibility_test: [
+  {
+    img: "img/course-21.jpg", 
+    title: "CTET - TGT - सामाजिक विज्ञान (Social Science SST) Recorded Course (Level 2)",
+    url: "https://fwlef.courses.store/706597?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-19.jpg", 
+    title: "CTET PRT Level 1 Recorded Course",
+    url: "https://fwlef.courses.store/706585?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-22.png", 
+    title: "CTET TGT Level 2 Math & Science Recorded Course",
+    url: "https://fwlef.courses.store/706579?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  }
+],
+
+   non_teaching_posts: [
+  {
+    img: "img/course-11.jpg",
+    title: "KVS Assistant Section Officer (ASO) Recorded Batch",
+    url: "https://fwlef.courses.store/285969?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-1.png",
+    title: "NVS Assistant Section Officer (ASO) Recorded Batch",
+    url: "https://fwlef.courses.store/475752?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-1.png",
+    title: "KVS SSA (Senior Secretariat Assistant) Recorded batch",
+    url: "https://fwlef.courses.store/285987?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-11.jpg",
+    title: "KVS JSA (Junior Secretariat Assistant) Recorded Batch",
+    url: "https://fwlef.courses.store/286103?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-13.png",
+    title: "NCERT Assistant Recorded Batch",
+    url: "https://fwlef.courses.store/392441?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-14.jpg",
+    title: "Central Government Service Rules Recorded Batch",
+    url: "https://fwlef.courses.store/389177?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-4.jpg",
+    title: "EMRS Hostel Warden Recorded Batch",
+    url: "https://fwlef.courses.store/734128?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-4.jpg",
+    title: "EMRS Accountant Recorded Batch",
+    url: "https://fwlef.courses.store/734060?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  },
+  {
+    img: "img/course-1.png",
+    title: "KVS Stenographer Grade-2 Recorded Batch",
+    url: "https://fwlef.courses.store/324621?utm_source=other&utm_medium=tutor-course-referral&utm_campaign=course-overview-webapp"
+  }
+
+      
+    ],
+     aiims_cre: [
+      {
+        img: "img/course-12.jpg",
+        title: "AIIMS CRE AAO, JAO, Office Assistant, Assistant Recorded Batch",
+        url: " https://fwlef.courses.store/619678?utm_source%3Dother%26utm_medium%3Dtutor-course-referral%26utm_campaign%3Dcourse-overview-webapp"
+      },
+      {
+        img: "img/course-20.jpg",
+        title: "AIIMS CRE AAO, JAO, Office Assistant, Assistant Test Series ",
+        url: "https://fwlef.courses.store/619700?utm_source%3Dother%26utm_medium%3Dtutor-course-referral%26utm_campaign%3Dcourse-overview-webapp"
+      }
+    ],
+  };
+
+  document.querySelectorAll('.category-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const category = card.getAttribute('data-category');
+      if (!category) return;
+
+      const courses = coursesData[category] || [];
+      const modalTitle = category === "all_categories" ? "All Categories" : category.replace(/_/g, " ").toUpperCase();
+      document.getElementById('coursesModalLabel').textContent = modalTitle;
+
+      const container = document.getElementById('modal-courses-container');
+      container.innerHTML = '';
+
+      if (courses.length === 0) {
+        container.innerHTML = '<p class="text-center">No courses available.</p>';
+      } else {
+        courses.forEach(course => {
+          const col = document.createElement('div');
+          col.className = 'col-md-4';
+          col.innerHTML = `
+            <div class="card h-100 shadow border-0 rounded-4">
+              <img src="${course.img}" class="card-img-top p-3" style="height:150px; object-fit:contain;" alt="${course.title}" />
+              <div class="card-body">
+                <h6 class="card-title">${course.title}</h6>
+              </div>
+              <div class="card-footer bg-white border-0">
+                <a href="${course.url}" target="_blank" class="btn btn-link text-white-important fw-bold">Enroll Now &nbsp; <span style="font-size:1.2em;">&#8594;</span></a>
+              </div>
+            </div>
+          `;
+          container.appendChild(col);
+        });
+      }
+      const modal = new bootstrap.Modal(document.getElementById('coursesModal'));
+      modal.show();
+    });
+  });
+</script>
+
 </body>
 
 </html>
