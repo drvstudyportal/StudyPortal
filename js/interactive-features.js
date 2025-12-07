@@ -209,11 +209,21 @@
 
     // Interactive Statistics Counter
     function initStatisticsCounter() {
-        const counters = $('.stat-counter');
+        // Handle both .counter and .stat-counter classes
+        const counters = $('.counter, .stat-counter');
+        const animatedCounters = new Set();
         
-        counters.each(function() {
-            const $counter = $(this);
-            const target = parseInt($counter.data('target'));
+        function animateCounter($counter) {
+            const counterId = $counter[0];
+            if (animatedCounters.has(counterId)) {
+                return; // Already animated
+            }
+            animatedCounters.add(counterId);
+            
+            // Check for data-count (used in HTML) or data-target
+            const target = parseInt($counter.data('count')) || parseInt($counter.data('target')) || 0;
+            if (!target) return;
+            
             const duration = 2000;
             const increment = target / (duration / 16);
             let current = 0;
@@ -226,6 +236,102 @@
                 }
                 $counter.text(Math.floor(current));
             }, 16);
+        }
+        
+        // Function to check if element is in viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            return (
+                rect.top < windowHeight - 100 &&
+                rect.bottom > 0 &&
+                rect.left < (window.innerWidth || document.documentElement.clientWidth) &&
+                rect.right > 0
+            );
+        }
+        
+        // Check counters on scroll
+        function checkCounters() {
+            counters.each(function() {
+                const $counter = $(this);
+                if (!animatedCounters.has(this) && isInViewport(this)) {
+                    animateCounter($counter);
+                }
+            });
+        }
+        
+        // Initial check
+        setTimeout(checkCounters, 100);
+        setTimeout(checkCounters, 500);
+        
+        // Check on scroll
+        let ticking = false;
+        $(window).on('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    checkCounters();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    }
+    
+    // Progress Bar Animation
+    function initProgressBars() {
+        const progressBars = $('.progress-bar[data-width]');
+        const animatedBars = new Set();
+        
+        function animateProgressBar($bar) {
+            const barId = $bar[0];
+            if (animatedBars.has(barId)) {
+                return; // Already animated
+            }
+            animatedBars.add(barId);
+            
+            const targetWidth = parseInt($bar.data('width')) || 0;
+            if (!targetWidth) return;
+            
+            // Animate the width
+            $bar.css('width', targetWidth + '%');
+        }
+        
+        // Function to check if element is in viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            return (
+                rect.top < windowHeight - 100 &&
+                rect.bottom > 0 &&
+                rect.left < (window.innerWidth || document.documentElement.clientWidth) &&
+                rect.right > 0
+            );
+        }
+        
+        // Check progress bars on scroll
+        function checkProgressBars() {
+            progressBars.each(function() {
+                const $bar = $(this);
+                if (!animatedBars.has(this) && isInViewport(this)) {
+                    animateProgressBar($bar);
+                }
+            });
+        }
+        
+        // Initial check
+        setTimeout(checkProgressBars, 100);
+        setTimeout(checkProgressBars, 500);
+        
+        // Check on scroll
+        let ticking = false;
+        $(window).on('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    checkProgressBars();
+                    ticking = false;
+                });
+                ticking = true;
+            }
         });
     }
 
@@ -241,6 +347,7 @@
         initLoadingStates();
         initImageGallery();
         initStatisticsCounter();
+        initProgressBars();
     }
 
     // Initialize when document is ready

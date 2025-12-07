@@ -166,34 +166,6 @@
         const projectId = '8myqcpgd';
         const dataset = 'production';
         
-        // Dynamic API base URL - works for both localhost and production
-        function getApiBaseUrl() {
-            const hostname = window.location.hostname;
-            
-            // If on localhost, use localhost:5100
-            if (hostname === 'localhost' || hostname === '127.0.0.1') {
-                return 'http://localhost:5100';
-            }
-            
-            // For production, check if there's a custom API URL configured
-            // You can set this in your HTML or as a data attribute
-            const customApiUrl = document.querySelector('meta[name="api-base-url"]');
-            if (customApiUrl && customApiUrl.content && customApiUrl.content.trim() !== '') {
-                return customApiUrl.content.trim();
-            }
-            
-            // Default: Use same origin (if API is on same domain)
-            // NOTE: If you get 404 errors, you need to deploy server.js separately
-            // and add a meta tag: <meta name="api-base-url" content="https://your-api-server.com">
-            console.warn('No custom API URL found. Using same origin. If you get 404 errors, add a meta tag with your API server URL.');
-            return window.location.origin;
-        }
-        
-        const API_BASE_URL = getApiBaseUrl();
-        
-        // Log API URL for debugging (remove in production if needed)
-        console.log('API Base URL:', API_BASE_URL);
-        
         // --- Sanity API Fetcher for Blog LIST Page ---
         function fetchSanityPosts() {
             const query = encodeURIComponent(`
@@ -411,7 +383,7 @@
                     formData.append('image', imageFile);
                     
                     try {
-                        const uploadRes = await fetch(`${API_BASE_URL}/api/uploadImage`, {
+                        const uploadRes = await fetch('http://localhost:5100/api/uploadImage', {
                             method: 'POST',
                             body: formData
                             // Don't set Content-Type header - browser will set it with boundary
@@ -435,14 +407,14 @@
                         imageAssetRef = uploadData.assetId;
                     } catch (err) {
                         if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
-                            throw new Error(`Cannot connect to server. Please make sure the server is running on ${API_BASE_URL}`);
+                            throw new Error('Cannot connect to server. Please make sure the server is running on http://localhost:5100');
                         }
                         throw err;
                     }
                 }
                 
                 // Create blog post with image reference
-                const createRes = await fetch(`${API_BASE_URL}/api/createBlog`, {
+                const createRes = await fetch('http://localhost:5100/api/createBlog', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
