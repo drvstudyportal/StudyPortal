@@ -11,7 +11,11 @@
             }
         }, 1);
     };
-    spinner();
+    
+    // Call spinner immediately for faster loading
+    if (typeof jQuery !== 'undefined') {
+        spinner();
+    }
 
     // Function to modify the Google Drive link for embedding
     function getEmbedUrl(driveLink) {
@@ -24,6 +28,113 @@
         }
         return null; 
     }
+
+    // Initialize carousels and other features when document is ready
+    $(document).ready(function() {
+        // Hide spinner
+        spinner();
+
+        // Initialize WOW.js for animations
+        if (typeof WOW !== 'undefined') {
+            new WOW().init();
+        }
+
+        // Scroll animation handler for .scroll-animate elements
+        function initScrollAnimations() {
+            const scrollAnimateElements = $('.scroll-animate');
+            
+            if (scrollAnimateElements.length === 0) return;
+            
+            // Function to check if element is in viewport (with offset)
+            function isInViewport(element, offset = 100) {
+                const rect = element.getBoundingClientRect();
+                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+                
+                return (
+                    rect.top < windowHeight - offset &&
+                    rect.bottom > offset &&
+                    rect.left < windowWidth &&
+                    rect.right > 0
+                );
+            }
+            
+            // Check on scroll and on load
+            function checkScrollAnimations() {
+                scrollAnimateElements.each(function() {
+                    const $el = $(this);
+                    // Only add animate class if not already animated and element is in viewport
+                    // Once animated, keep it animated (don't remove the class)
+                    if (!$el.hasClass('animate')) {
+                        if (isInViewport(this, 50)) {
+                            $el.addClass('animate');
+                        }
+                    }
+                });
+            }
+            
+            // Initial check - run multiple times to catch all elements
+            setTimeout(checkScrollAnimations, 50);
+            setTimeout(checkScrollAnimations, 200);
+            setTimeout(checkScrollAnimations, 500);
+            
+            // Check on scroll with requestAnimationFrame for smooth performance
+            let ticking = false;
+            $(window).on('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        checkScrollAnimations();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+            
+            // Also check when window is resized
+            $(window).on('resize', function() {
+                checkScrollAnimations();
+            });
+        }
+        
+        // Initialize scroll animations
+        initScrollAnimations();
+
+        // Header carousel initialization
+        if ($(".header-carousel").length) {
+            $(".header-carousel").owlCarousel({
+                autoplay: true,
+                smartSpeed: 1000,
+                items: 1,
+                dots: false,
+                loop: true,
+                nav: true,
+                navText: [
+                    '<i class="fa fa-angle-left"></i>',
+                    '<i class="fa fa-angle-right"></i>'
+                ],
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true
+            });
+        }
+
+        // Testimonials carousel
+        if ($(".testimonial-carousel").length) {
+            $(".testimonial-carousel").owlCarousel({
+                autoplay: true,
+                smartSpeed: 1000,
+                center: true,
+                margin: 24,
+                dots: true,
+                loop: true,
+                nav : false,
+                responsive: {
+                    0:{ items:1 },
+                    768:{ items:2 },
+                    992:{ items:3 }
+                }
+            });
+        }
+    });
 
     // Sticky Navbar
     $(window).scroll(function () {
@@ -45,22 +156,6 @@
     $('.back-to-top').click(function () {
         $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
         return false;
-    });
-
-    // Testimonials carousel
-    $(".testimonial-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1000,
-        center: true,
-        margin: 24,
-        dots: true,
-        loop: true,
-        nav : false,
-        responsive: {
-            0:{ items:1 },
-            768:{ items:2 },
-            992:{ items:3 }
-        }
     });
 
     // --- DOCUMENT READY: MAIN BLOG/API LOGIC ---
