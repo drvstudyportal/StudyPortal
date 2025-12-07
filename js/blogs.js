@@ -4,7 +4,7 @@ const sanityClient = require("@sanity/client");
 const client = sanityClient({
   projectId: '8myqcpgd',
   dataset: 'production',
-  token: process.env.SANITY_WRITE_TOKEN, // secret! do NOT expose client-side
+  token: process.env.SANITY_WRITE_TOKEN, 
   useCdn: false,
   apiVersion: '2024-01-01',
 });
@@ -42,3 +42,4 @@ module.exports = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
