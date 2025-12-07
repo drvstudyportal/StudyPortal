@@ -178,13 +178,14 @@
             // For production, check if there's a custom API URL configured
             // You can set this in your HTML or as a data attribute
             const customApiUrl = document.querySelector('meta[name="api-base-url"]');
-            if (customApiUrl && customApiUrl.content) {
-                return customApiUrl.content;
+            if (customApiUrl && customApiUrl.content && customApiUrl.content.trim() !== '') {
+                return customApiUrl.content.trim();
             }
             
             // Default: Use same origin (if API is on same domain)
-            // If your API is on a different domain/port, add this meta tag to your HTML:
-            // <meta name="api-base-url" content="https://your-api-domain.com">
+            // NOTE: If you get 404 errors, you need to deploy server.js separately
+            // and add a meta tag: <meta name="api-base-url" content="https://your-api-server.com">
+            console.warn('No custom API URL found. Using same origin. If you get 404 errors, add a meta tag with your API server URL.');
             return window.location.origin;
         }
         
