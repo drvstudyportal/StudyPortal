@@ -1,0 +1,11 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title>Notification bell</title>
+  <desc>Blue notification bell with a red badge showing the number 1</desc>
+  <g fill="none" fill-rule="evenodd">
+    <path d="M136 28c0-6.627-5.373-12-12-12s-12 5.373-12 12v8.174C84.848 42.98 64 68.118 64 98v58.322c0 8.418-3.34 16.497-9.29 22.448l-9.008 9.008C38.525 192.955 40.42 198 44.33 198H212c3.91 0 5.806-5.045 2.628-10.222l-9.008-9.008A31.751 31.751 0 0 1 196 156.322V98c0-29.882-20.848-55.02-48-61.826V28Z" fill="#10A8FF"/>
+    <path d="M128 230c13.255 0 24-10.745 24-24H104c0 13.255 10.745 24 24 24Z" fill="#10A8FF"/>
+    <circle cx="196" cy="64" r="38" fill="#FF4B4B"/>
+    <text x="196" y="80" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="40" font-weight="800" fill="#FFF">1</text>
+  </g>
+</svg>
+

@@ -104,7 +104,7 @@ app.post('/api/createBlog', async (req, res) => {
     const created = await client.create(postDoc);
     res.status(201).json(created);
   } catch (error) {
-    console.error('Blog creation error:', error);
+    console.error('Creation error:', error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -113,5 +113,5 @@ app.listen(port, () => {
   console.log(`Backend server running at http://localhost:${port}`);
   console.log(`Test endpoint: http://localhost:${port}/api/test`);
   console.log(`Upload endpoint: http://localhost:${port}/api/uploadImage`);
-  console.log(`Create blog endpoint: http://localhost:${port}/api/createBlog`);
+  console.log(`Create  endpoint: http://localhost:${port}/api/createBlog`);
 });

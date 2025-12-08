@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Study Portal : Blogs</title>
+  <title>Study Portal : Notifications</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="keywords" content="" />
   <meta name="description" content="" />
@@ -156,7 +156,10 @@
           <a href="index.html" class="nav-item nav-link">Home</a>
           <a href="about.html" class="nav-item nav-link">About</a>
           <a href="courses.html" class="nav-item nav-link">Courses</a>
-          <a href="blogs.html" class="nav-item nav-link active">Blogs</a>
+          <a href="blogs.html" class="nav-item nav-link active d-flex align-items-center gap-2">
+            <img src="img/notification-bell.svg" alt="Notifications" style="height:26px;width:26px;object-fit:contain;">
+            <span>Notifications</span>
+          </a>
           <a href="contact.html" class="nav-item nav-link">Contact</a>
           <a href="#" class="nav-item nav-link">
             <div id="google_translate_element"></div>
@@ -180,11 +183,14 @@
       <div class="container py-5">
         <div class="row justify-content-center">
           <div class="col-lg-10 text-center">
-            <h1 class="display-3 text-white animated slideInDown">Blogs</h1>
+            <h1 class="display-3 text-white animated slideInDown d-inline-flex align-items-center gap-3 justify-content-center">
+              <img src="img/notification-bell.svg" alt="Notifications" style="height:64px;width:64px;object-fit:contain;">
+              <span>Notifications</span>
+            </h1>
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb justify-content-center">
                 <li class="breadcrumb-item"><a class="text-white" href="index.html">Home</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">Blogs</li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Notifications</li>
               </ol>
             </nav>
             <p class="fw-bold text-white mb-0" style="font-size: 0.9rem;">Learn Today. Lead Tomorrow</p>
@@ -196,7 +202,7 @@
       <div class="container">
         <div class="mb-4 text-end">
           <button id="post-blog-btn" class="btn btn-primary bounce-animation">
-            <i class="fas fa-plus me-2"></i>Post a Blog
+            <i class="fas fa-plus me-2"></i>Post a Notification
           </button>
         </div>
 
@@ -212,7 +218,7 @@
               <div class="modal-body p-4">
                 <div class="text-center mb-4">
                   <i class="fas fa-shield-alt text-primary" style="font-size: 3rem;"></i>
-                  <h6 class="mt-3 text-muted">Enter passkey to post a blog</h6>
+                  <h6 class="mt-3 text-muted">Enter passkey to post</h6>
                 </div>
                 <div class="form-floating mb-3">
                   <input type="password" class="form-control form-control-lg" id="passkey-input" placeholder="Enter passkey" style="border-radius: 10px; border: 2px solid #e9ecef;">
@@ -237,7 +243,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title text-white" id="postBlogModalLabel">
-                  <i class="fas fa-edit me-2"></i>Create New Blog Post
+                  <i class="fas fa-edit me-2"></i>Create New Notification
                 </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>

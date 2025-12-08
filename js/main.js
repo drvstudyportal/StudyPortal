@@ -189,7 +189,7 @@
             `);
             const url = `https://${projectId}.api.sanity.io/v2021-10-21/data/query/${dataset}?query=${query}`;
             
-            $('#sanity-blog-posts').html('<p class="text-center"><i class="fas fa-spinner fa-spin me-2"></i>Loading blog posts...</p>');
+            $('#sanity-blog-posts').html('<p class="text-center"><i class="fas fa-spinner fa-spin me-2"></i>Loading Notification...</p>');
             
             $.ajax({
                 url: url,
@@ -429,11 +429,11 @@
                 
                 if (!createRes.ok) {
                     const errorText = await createRes.text();
-                    throw new Error('Blog creation failed: ' + errorText);
+                    throw new Error('Creation failed: ' + errorText);
                 }
                 
                 const data = await createRes.json();
-                alert('Blog posted successfully!');
+                alert(' Posted successfully!');
                 $('#postBlogModal').modal('hide');
                 
                 // Reset form
@@ -448,7 +448,7 @@
                 fetchSanityPosts();
             } catch (err) {
                 console.error('Submission Error:', err);
-                alert('Error posting blog: ' + err.message);
+                alert('Error posting : ' + err.message);
             } finally {
                 submitBtn.prop('disabled', false).html(originalText);
             }
@@ -479,13 +479,13 @@
         const slug = getUrlParameter('slug');
         const container = $('#blog-content-container');
         if (!container.length) {
-            console.error('Blog content container not found');
+            console.error('content container not found');
             return;
         }
-        container.html('<p class="text-center"><i class="fas fa-spinner fa-spin me-2"></i>Loading blog post...</p>');
+        container.html('<p class="text-center"><i class="fas fa-spinner fa-spin me-2"></i>Loading..</p>');
 
         if (!slug || slug === 'n/a') {
-            container.html('<h2 class="text-danger">Post Not Found</h2><p>The requested blog post URL is invalid.</p><a href="blogs.html" class="btn btn-primary mt-3">Back to Blogs</a>');
+            container.html('<h2 class="text-danger">Post Not Found</h2><p>The requested URL is invalid.</p><a href="blogs.html" class="btn btn-primary mt-3">Back to Notifications</a>');
             return;
         }
 
@@ -540,17 +540,17 @@
                         <hr class="my-5">
                         <div class="text-center">
                             <a href="blogs.html" class="btn btn-primary">
-                                <i class="fas fa-arrow-left me-2"></i>Back to Blogs
+                                <i class="fas fa-arrow-left me-2"></i>Back to Notifications
                             </a>
                         </div>
                     `);
                 } else {
-                    container.html('<h2 class="text-danger">Post Not Found</h2><p>The requested blog post does not exist.</p><a href="blogs.html" class="btn btn-primary mt-3">Back to Blogs</a>');
+                    container.html('<h2 class="text-danger">Post Not Found</h2><p>The requested post does not exist.</p><a href="blogs.html" class="btn btn-primary mt-3">Back to Notifications</a>');
                 }
             },
             error: function (xhr, status, error) {
-                console.error('Error loading blog detail:', error);
-                container.html(`<h2 class="text-danger">Error</h2><p>Failed to fetch blog post details from the server.</p><p class="text-muted">${error}</p><a href="blogs.html" class="btn btn-primary mt-3">Back to Blogs</a>`);
+                console.error('Error loading detail:', error);
+                container.html(`<h2 class="text-danger">Error</h2><p>Failed to fetch details from the server.</p><p class="text-muted">${error}</p><a href="blogs.html" class="btn btn-primary mt-3">Back to Notifications</a>`);
             }
         });
     }
