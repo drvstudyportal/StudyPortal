@@ -170,7 +170,7 @@
         const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         const API_BASE_URL = isLocalhost 
             ? 'http://localhost:5100' 
-            : 'https://www.studyportalacademy.com';
+            : window.location.origin; // Use same origin for production (Vercel serverless functions)
         
         // --- Sanity API Fetcher for Blog LIST Page ---
         function fetchSanityPosts() {
