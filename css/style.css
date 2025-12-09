@@ -96,6 +96,11 @@ body {
 .btn {
     background-color: var(--primary);
     border: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    transition: .5s;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn a {
@@ -107,10 +112,27 @@ body {
     background: transparent;
     color: var(--secondary) !important;
     border: 1px solid var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
 .btn:hover a {
     color: var(--secondary) !important;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
 }
 
 .btn-light {
@@ -134,7 +156,7 @@ body {
 .back-to-top {
     position: fixed;
     display: none;
-    right: 0px;
+    right: 0;
     bottom: 45px;
     z-index: 99;
 }
@@ -155,12 +177,6 @@ body {
 }
 
 
-/*** Button ***/
-.btn {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 600;
-    transition: .5s;
-}
 
 .btn.btn-primary,
 .btn.btn-secondary {
@@ -211,11 +227,36 @@ body {
     font-size: 15px;
     text-transform: uppercase;
     outline: none;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease;
 }
 
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .nav-link.active {
     color: var(--secondary);
+}
+
+.navbar-light .navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--secondary);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar-light .navbar-nav .nav-link:hover::after,
+.navbar-light .navbar-nav .nav-link.active::after {
+    width: 100%;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    color: var(--secondary) !important;
+    font-weight: 600;
 }
 
 @media (max-width: 991.98px) {
@@ -232,11 +273,6 @@ body {
 .navbar-light .navbar-brand,
 .navbar-light a.btn {
     height: 75px;
-}
-
-.navbar-light .navbar-nav .nav-link {
-    color: var(--dark);
-    font-weight: 500;
 }
 
 .navbar-light.sticky-top {
@@ -442,7 +478,6 @@ body {
 .service-item {
     transition: .5s;
 }
-
 
 .service-item i {
     color: var(--secondary);
@@ -681,10 +716,10 @@ body {
 
 /* Bounce Animation */
 .bounce-animation {
-    animation: bounce 2s infinite;
+    animation: bounceButton 2s infinite;
 }
 
-@keyframes bounce {
+@keyframes bounceButton {
     0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
     }
@@ -817,17 +852,6 @@ body {
     }
 }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-5px);
-    }
-}
 
 @keyframes shimmer {
     0% {
@@ -889,28 +913,6 @@ body {
     transform: scale(1.1);
 }
 
-/* Interactive Service Items */
-.service-item {
-    transition: .5s;
-}
-
-
-.service-item i {
-    color: var(--secondary);
-}
-
-.service-item:hover {
-    margin-top: -10px;
-    background: var(--secondary);
-}
-
-.service-item * {
-    transition: all .3s ease-in-out;
-}
-
-.service-item:hover * {
-    color: #fff !important;
-}
 
 /* Flip Card Styles */
 .flip-card {
@@ -982,32 +984,6 @@ body {
     color: white !important;
 }
 
-/* Interactive Buttons */
-.btn {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s;
-}
-
-.btn:hover::before {
-    left: 100%;
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
 
 /* Animated Progress Bars */
 .progress-container {
@@ -1064,28 +1040,6 @@ body {
     animation-delay: 2s;
 }
 
-/* Interactive Navigation */
-.navbar-nav .nav-link {
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.navbar-nav .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: var(--secondary);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-}
-
-.navbar-nav .nav-link:hover::after,
-.navbar-nav .nav-link.active::after {
-    width: 100%;
-}
 
 /* Interactive FAQ */
 .accordion-button {
@@ -1150,37 +1104,7 @@ body {
     transform: translateY(0);
 }
 
-/* Interactive Cards */
-.interactive-card {
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border-radius: 15px;
-    overflow: hidden;
-    position: relative;
-}
-
-.interactive-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s;
-    z-index: 1;
-}
-
-.interactive-card:hover::before {
-    left: 100%;
-}
-
-.interactive-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
-
-/* Interactive Cards with Enhanced Effects */
+/* Interactive Cards - Consolidated */
 .interactive-card {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
@@ -1210,11 +1134,6 @@ body {
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
-/* Enhanced Navigation with Active States */
-.navbar-nav .nav-link.active {
-    color: var(--secondary) !important;
-    font-weight: 600;
-}
 
 /* Interactive Elements with Hover Effects */
 .interactive-element {
@@ -1290,10 +1209,6 @@ body {
 
 .feature-list-vertical .feature-tab p {
     font-size: 1.1rem;
-}
-
-.footer {
-    margin-bottom: 0 !important;
 }
 
 .category-card {

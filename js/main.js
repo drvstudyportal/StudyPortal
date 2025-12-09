@@ -17,17 +17,6 @@
         spinner();
     }
 
-    // Function to modify the Google Drive link for embedding
-    function getEmbedUrl(driveLink) {
-        if (driveLink && driveLink.includes("drive.google.com/file/d/")) {
-            const fileIdMatch = driveLink.match(/\/d\/([a-zA-Z0-9_-]+)/);
-            if (fileIdMatch && fileIdMatch[1]) {
-                // Reconstruct the URL using the /preview endpoint
-                return `https://drive.google.com/file/d/${fileIdMatch[1]}/preview`;
-            }
-        }
-        return null; 
-    }
 
     // Initialize carousels and other features when document is ready
     $(document).ready(function() {
@@ -38,6 +27,9 @@
         if (typeof WOW !== 'undefined') {
             new WOW().init();
         }
+        
+        // Initialize blog/API logic if needed
+        initBlogLogic();
 
         // Scroll animation handler for .scroll-animate elements
         function initScrollAnimations() {
@@ -136,21 +128,30 @@
         }
     });
 
-    // Sticky Navbar
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 300) {
-            $('.sticky-top').css('top', '0px');
-        } else {
-            $('.sticky-top').css('top', '-100px');
-        }
-    });
-
-    // Back to top button
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 300) {
-            $('.back-to-top').fadeIn('slow');
-        } else {
-            $('.back-to-top').fadeOut('slow');
+    // Optimized scroll handlers - consolidated and debounced
+    let scrollTicking = false;
+    $(window).on('scroll', function () {
+        if (!scrollTicking) {
+            window.requestAnimationFrame(function() {
+                const scrollTop = $(window).scrollTop();
+                
+                // Sticky Navbar
+                if (scrollTop > 300) {
+                    $('.sticky-top').css('top', '0px');
+                } else {
+                    $('.sticky-top').css('top', '-100px');
+                }
+                
+                // Back to top button
+                if (scrollTop > 300) {
+                    $('.back-to-top').fadeIn('slow');
+                } else {
+                    $('.back-to-top').fadeOut('slow');
+                }
+                
+                scrollTicking = false;
+            });
+            scrollTicking = true;
         }
     });
     $('.back-to-top').click(function () {
@@ -158,9 +159,8 @@
         return false;
     });
 
-    // --- DOCUMENT READY: MAIN BLOG/API LOGIC ---
-
-    $(document).ready(function () {
+    // --- MAIN BLOG/API LOGIC (Consolidated) ---
+    function initBlogLogic() {
         const SECRET_PASSKEY = 'qwerty'; // Your passkey
         const PLACEHOLDER_IMG = 'https://via.placeholder.com/600x400?text=StudyPortal+Document'; // Fallback image
         const projectId = '8myqcpgd';
@@ -453,9 +453,7 @@
                 submitBtn.prop('disabled', false).html(originalText);
             }
         });
-        
-
-    });
+    }
 
     // Function to make links clickable in text
     function makeLinksClickable(text) {

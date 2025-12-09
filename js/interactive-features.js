@@ -42,11 +42,6 @@
         }
     }
 
-    // Particle Background Disabled - Clean background preferred
-    function initParticleBackground() {
-        // Particle background removed for cleaner look
-        return;
-    }
 
     // Interactive Course Filter
     function initCourseFilter() {
@@ -285,18 +280,16 @@
         function animateProgressBar($bar) {
             const barId = $bar[0];
             if (animatedBars.has(barId)) {
-                return; // Already animated
+                return;
             }
             animatedBars.add(barId);
             
             const targetWidth = parseInt($bar.data('width')) || 0;
             if (!targetWidth) return;
             
-            // Animate the width
             $bar.css('width', targetWidth + '%');
         }
         
-        // Function to check if element is in viewport
         function isInViewport(element) {
             const rect = element.getBoundingClientRect();
             const windowHeight = window.innerHeight || document.documentElement.clientHeight;
@@ -338,7 +331,6 @@
     // Initialize all interactive features
     function initAllFeatures() {
         initTypingAnimation();
-        initParticleBackground();
         initCourseFilter();
         initSearchHighlighting();
         initProgressTracking();
