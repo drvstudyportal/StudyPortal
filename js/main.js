@@ -166,6 +166,12 @@
         const projectId = '8myqcpgd';
         const dataset = 'production';
         
+        // Dynamic API URL - works for both development and production
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE_URL = isLocalhost 
+            ? 'http://localhost:5100' 
+            : 'https://www.studyportalacademy.com';
+        
         // --- Sanity API Fetcher for Blog LIST Page ---
         function fetchSanityPosts() {
             const query = encodeURIComponent(`
@@ -383,7 +389,7 @@
                     formData.append('image', imageFile);
                     
                     try {
-                        const uploadRes = await fetch('http://localhost:5100/api/uploadImage', {
+                        const uploadRes = await fetch(`${API_BASE_URL}/api/uploadImage`, {
                             method: 'POST',
                             body: formData
                             // Don't set Content-Type header - browser will set it with boundary
@@ -407,14 +413,14 @@
                         imageAssetRef = uploadData.assetId;
                     } catch (err) {
                         if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
-                            throw new Error('Cannot connect to server. Please make sure the server is running on http://localhost:5100');
+                            throw new Error(`Cannot connect to server. Please check if the API is available at ${API_BASE_URL}`);
                         }
                         throw err;
                     }
                 }
                 
                 // Create blog post with image reference
-                const createRes = await fetch('http://localhost:5100/api/createBlog', {
+                const createRes = await fetch(`${API_BASE_URL}/api/createBlog`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
