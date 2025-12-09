@@ -1,9 +1,15 @@
 const { createClient } = require('@sanity/client');
 
+// Get token and validate it
+const sanityToken = process.env.SANITY_API_TOKEN || process.env.SANITY_WRITE_TOKEN;
+if (!sanityToken) {
+  console.error('SANITY_API_TOKEN environment variable is not set');
+}
+
 const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '8myqcpgd',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-  token: process.env.SANITY_API_TOKEN,
+  token: sanityToken ? sanityToken.trim() : undefined,
   useCdn: false,
   apiVersion: '2024-01-01',
 });
@@ -23,6 +29,10 @@ module.exports = async (req, res) => {
   }
 
   try {
+    if (!sanityToken) {
+      return res.status(500).json({ error: 'Sanity API token is not configured. Please set SANITY_API_TOKEN environment variable.' });
+    }
+
     const { title, slug, publishedAt, imageAssetRef, body, googleDriveUrl } = req.body;
     
     if (!title || !body) {
