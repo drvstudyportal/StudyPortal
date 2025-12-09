@@ -22,13 +22,13 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { title, slug, publishedAt, imageAssetRef, body, googleDriveUrl } = req.body;
-  
-  if (!title || !body) {
-    return res.status(400).json({ error: 'Missing title or body' });
-  }
-  
   try {
+    const { title, slug, publishedAt, imageAssetRef, body, googleDriveUrl } = req.body;
+    
+    if (!title || !body) {
+      return res.status(400).json({ error: 'Missing title or body' });
+    }
+    
     const postDoc = {
       _type: 'post',
       title,
@@ -54,9 +54,9 @@ module.exports = async (req, res) => {
     }
     
     const created = await client.create(postDoc);
-    res.status(201).json(created);
+    return res.status(201).json(created);
   } catch (error) {
     console.error('Creation error:', error);
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message || 'Failed to create blog post' });
   }
 };

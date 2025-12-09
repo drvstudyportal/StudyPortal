@@ -23,78 +23,73 @@ module.exports = async (req, res) => {
   }
 
   try {
-    // For Vercel, we'll use a simpler approach with base64 or direct buffer
-    // First, try to get the file from the request
+    // Parse multipart/form-data
+    const contentType = req.headers['content-type'] || '';
+    if (!contentType.includes('multipart/form-data')) {
+      return res.status(400).json({ error: 'Invalid content type. Expected multipart/form-data' });
+    }
+
+    const boundary = contentType.split('boundary=')[1];
+    if (!boundary) {
+      return res.status(400).json({ error: 'No boundary found in content-type' });
+    }
+
+    // Read request body
     const chunks = [];
+    req.on('data', (chunk) => chunks.push(chunk));
     
-    req.on('data', (chunk) => {
-      chunks.push(chunk);
+    await new Promise((resolve, reject) => {
+      req.on('end', resolve);
+      req.on('error', reject);
     });
 
-    req.on('end', async () => {
-      try {
-        const buffer = Buffer.concat(chunks);
-        const contentType = req.headers['content-type'] || '';
+    const buffer = Buffer.concat(chunks);
+    const parts = buffer.toString('binary').split('--' + boundary);
+    
+    let fileBuffer = null;
+    let filename = null;
+    let fileContentType = 'image/jpeg';
+
+    for (const part of parts) {
+      if (part.includes('Content-Disposition') && part.includes('filename=')) {
+        const filenameMatch = part.match(/filename="([^"]+)"/);
+        const contentTypeMatch = part.match(/Content-Type:\s*([^\r\n]+)/);
         
-        // Parse multipart/form-data manually
-        const boundary = contentType.split('boundary=')[1];
-        if (!boundary) {
-          return res.status(400).json({ error: 'Invalid content type' });
-        }
-
-        const parts = buffer.toString('binary').split('--' + boundary);
-        let fileBuffer = null;
-        let filename = null;
-        let fileContentType = 'image/jpeg';
-
-        for (const part of parts) {
-          if (part.includes('Content-Disposition') && part.includes('filename=')) {
-            const filenameMatch = part.match(/filename="([^"]+)"/);
-            const contentTypeMatch = part.match(/Content-Type:\s*([^\r\n]+)/);
-            
-            if (filenameMatch) {
-              filename = filenameMatch[1];
-              if (contentTypeMatch) {
-                fileContentType = contentTypeMatch[1].trim();
-              }
-              
-              const headerEnd = part.indexOf('\r\n\r\n');
-              if (headerEnd !== -1) {
-                const body = part.substring(headerEnd + 4);
-                const bodyEnd = body.lastIndexOf('\r\n');
-                fileBuffer = Buffer.from(body.substring(0, bodyEnd), 'binary');
-              }
-              break;
+        if (filenameMatch) {
+          filename = filenameMatch[1];
+          if (contentTypeMatch) {
+            fileContentType = contentTypeMatch[1].trim();
+          }
+          
+          const headerEnd = part.indexOf('\r\n\r\n');
+          if (headerEnd !== -1) {
+            const body = part.substring(headerEnd + 4);
+            const bodyEnd = body.lastIndexOf('\r\n');
+            if (bodyEnd > 0) {
+              fileBuffer = Buffer.from(body.substring(0, bodyEnd), 'binary');
             }
           }
+          break;
         }
-
-        if (!fileBuffer) {
-          return res.status(400).json({ error: 'No image file provided' });
-        }
-
-        // Upload image to Sanity
-        const asset = await client.assets.upload('image', fileBuffer, {
-          filename: filename || 'upload.jpg',
-          contentType: fileContentType,
-        });
-
-        res.status(200).json({ 
-          assetId: asset._id,
-          url: asset.url 
-        });
-      } catch (error) {
-        console.error('Image upload error:', error);
-        res.status(500).json({ error: error.message || 'Upload failed' });
       }
+    }
+
+    if (!fileBuffer) {
+      return res.status(400).json({ error: 'No image file provided' });
+    }
+
+    // Upload image to Sanity
+    const asset = await client.assets.upload('image', fileBuffer, {
+      filename: filename || 'upload.jpg',
+      contentType: fileContentType,
     });
 
-    req.on('error', (error) => {
-      console.error('Request error:', error);
-      res.status(500).json({ error: error.message });
+    return res.status(200).json({ 
+      assetId: asset._id,
+      url: asset.url 
     });
   } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: error.message || 'Upload failed' });
+    console.error('Image upload error:', error);
+    return res.status(500).json({ error: error.message || 'Upload failed' });
   }
 };
