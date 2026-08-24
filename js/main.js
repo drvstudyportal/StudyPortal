@@ -533,7 +533,7 @@
                     }
 
                     container.html(`
-                        <h1 class="display-5 mb-4 text-primary">${post.title}</h1>
+                        <h2 class="display-5 mb-4 text-primary">${post.title}</h2>
                         <p class="text-muted mb-4"><i class="fas fa-calendar-alt me-2"></i>Published: ${post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : '—'}</p>
                         ${post.imageUrl ? `<div class="text-center mb-4"><img src="${post.imageUrl}" class="img-fluid rounded blog-detail-main-image" alt="${post.title}" onerror="this.onerror=null;this.style.display='none';"></div>` : ''}
                         
@@ -548,6 +548,12 @@
                             </a>
                         </div>
                     `);
+
+                    // Promote the notification title into the page H1 and refresh
+                    // all SEO / AI-answer metadata for this specific notification.
+                    if (typeof window.updateNotificationSEO === 'function') {
+                        window.updateNotificationSEO(post, slug);
+                    }
                 } else {
                     container.html('<h2 class="text-danger">Post Not Found</h2><p>The requested post does not exist.</p><a href="blogs.html" class="btn btn-primary mt-3">Back to Notifications</a>');
                 }

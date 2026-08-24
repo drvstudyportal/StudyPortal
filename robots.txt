@@ -1,0 +1,131 @@
+# robots.txt — Study Portal Academy
+# https://www.studyportalacademy.com/
+# KVS / NVS / EMRS / UPSC Principal & Vice Principal, DSSSB, CTET, HTET coaching
+# Serving Delhi NCR and Haryana (Gurugram, Faridabad, Rohtak, Hisar, Panipat, Sonipat, Karnal)
+
+# ---------------------------------------------------------------
+# 1. Traditional search engine crawlers
+# ---------------------------------------------------------------
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# ---------------------------------------------------------------
+# 2. AI answer engines & LLM crawlers  (AEO / GEO)
+#    Explicitly allowed so Study Portal Academy can be cited as a
+#    source inside ChatGPT, Gemini, Perplexity, Claude and Copilot
+#    answers for Delhi & Haryana teaching-exam queries.
+# ---------------------------------------------------------------
+
+# OpenAI — ChatGPT training + ChatGPT Search + live browsing
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Google — Gemini / AI Overviews / AI Mode grounding
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+# Anthropic — Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Microsoft Copilot
+User-agent: Bingbot-Extended
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Apple Intelligence / Siri
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Amazon / Alexa
+User-agent: Amazonbot
+Allow: /
+
+# Common Crawl — feeds many open LLM training corpora
+User-agent: CCBot
+Allow: /
+
+# You.com, Cohere, Mistral, DeepSeek and other answer engines
+User-agent: YouBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: omgili
+Allow: /
+
+# ---------------------------------------------------------------
+# 3. Default rule for everything else
+# ---------------------------------------------------------------
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /studio-studyportal/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*?*passkey=
+
+# Crawl politeness for aggressive scrapers
+Crawl-delay: 1
+
+# ---------------------------------------------------------------
+# 4. Machine-readable resources
+# ---------------------------------------------------------------
+Sitemap: https://www.studyportalacademy.com/sitemap.xml
+
+# LLM-readable site summary (llmstxt.org standard)
+# https://www.studyportalacademy.com/llms.txt
+# https://www.studyportalacademy.com/llms-full.txt
