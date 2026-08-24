@@ -1,0 +1,500 @@
+/* =============================================================================
+   refresh.css — Study Portal Academy visual refresh
+   -----------------------------------------------------------------------------
+   Loaded AFTER css/style.css and css/bootstrap.min.css, so it wins on equal
+   specificity by source order. Everything here is additive and isolated:
+   removing the one <link> tag reverts the site to its previous appearance.
+
+   Contents
+     1. Design tokens          5. Cards & sections
+     2. Palette reconciliation 6. Footer & floating actions
+     3. Typography             7. Accessibility
+     4. Buttons & navbar       8. Motion
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   1. DESIGN TOKENS
+   The template shipped with five colours and no spacing, radius or shadow
+   scale, so spacing was improvised inline on every page. This is the scale.
+--------------------------------------------------------------------------- */
+:root {
+  /* Navy — authority, the institutional base */
+  --sp-navy-950: #081A31;
+  --sp-navy-900: #0C2444;
+  --sp-navy-800: #123156;
+  --sp-navy-700: #1B4478;
+  --sp-navy-600: #2A5B98;
+  --sp-navy-50:  #EEF3F9;
+
+  /* Marigold — the accent. Used sparingly: never as a background for text. */
+  --sp-gold-600: #B8791A;
+  --sp-gold-500: #DDA03C;
+  --sp-gold-400: #EBB65F;
+  --sp-gold-50:  #FDF4E4;
+
+  /* Neutrals, biased very slightly blue so they sit with the navy */
+  --sp-ink:       #14202F;
+  --sp-body:      #4C5A6E;
+  --sp-muted:     #78849A;
+  --sp-line:      #E3E8EF;
+  --sp-line-soft: #EFF2F7;
+  --sp-bg:        #F7F9FC;
+  --sp-surface:   #FFFFFF;
+
+  --sp-success: #16745A;
+  --sp-danger:  #A32F3A;
+
+  /* Spacing scale */
+  --sp-1: .25rem;  --sp-2: .5rem;   --sp-3: .75rem;  --sp-4: 1rem;
+  --sp-5: 1.5rem;  --sp-6: 2rem;    --sp-7: 3rem;    --sp-8: 4rem;
+
+  /* Radii — restrained. Cards 10px, controls 6px. */
+  --sp-r-sm: 4px;
+  --sp-r:    6px;
+  --sp-r-md: 10px;
+  --sp-r-lg: 16px;
+
+  /* Shadows, tinted with the navy rather than neutral black */
+  --sp-shadow-sm: 0 1px 2px rgba(12, 36, 68, .06);
+  --sp-shadow:    0 2px 4px rgba(12, 36, 68, .06), 0 8px 16px -8px rgba(12, 36, 68, .14);
+  --sp-shadow-md: 0 4px 8px rgba(12, 36, 68, .07), 0 18px 32px -16px rgba(12, 36, 68, .20);
+  --sp-shadow-lg: 0 8px 16px rgba(12, 36, 68, .08), 0 32px 56px -24px rgba(12, 36, 68, .26);
+
+  --sp-ease: cubic-bezier(.2, .7, .3, 1);
+  --sp-t:    180ms var(--sp-ease);
+
+  /* ---- legacy token overrides -------------------------------------------
+     style.css and every inline style on the site reference these five names,
+     so redefining them re-skins the whole site in one place.               */
+  --primary:   var(--sp-navy-800);
+  --secondary: var(--sp-navy-700);
+  --accent:    var(--sp-gold-500);
+  --light:     var(--sp-bg);
+  --dark:      var(--sp-ink);
+}
+
+/* ---------------------------------------------------------------------------
+   2. PALETTE RECONCILIATION
+   Bootstrap was compiled with the original template's teal (#06BBCC), so
+   `text-primary` rendered teal on 54 places across the site while the CSS
+   variables rendered navy. The site was running two palettes at once.
+--------------------------------------------------------------------------- */
+:root {
+  --bs-primary: #123156;
+  --bs-primary-rgb: 18, 49, 86;
+  --bs-light: #F7F9FC;
+  --bs-light-rgb: 247, 249, 252;
+  --bs-dark: #14202F;
+  --bs-dark-rgb: 20, 32, 47;
+}
+
+.text-primary { color: var(--sp-navy-800) !important; }
+.bg-primary   { background-color: var(--sp-navy-800) !important; }
+.border-primary { border-color: var(--sp-navy-800) !important; }
+.text-warning { color: var(--sp-gold-600) !important; }
+.bg-light     { background-color: var(--sp-bg) !important; }
+.bg-dark      { background-color: var(--sp-navy-950) !important; }
+.text-dark    { color: var(--sp-ink) !important; }
+
+/* Gold accent utility for deliberate emphasis */
+.text-accent  { color: var(--sp-gold-600) !important; }
+
+/* ---------------------------------------------------------------------------
+   3. TYPOGRAPHY
+   Headings move from Nunito (rounded, soft) to Archivo — a sturdier grotesque
+   that holds up at display sizes. Body stays Heebo. Still two families, so
+   there is no extra network cost.
+--------------------------------------------------------------------------- */
+body {
+  font-family: "Heebo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--sp-body);
+  background-color: var(--sp-surface);
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6,
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  font-family: "Archivo", "Nunito", system-ui, sans-serif;
+  color: var(--sp-ink);
+  font-weight: 700;
+  letter-spacing: -.018em;
+  line-height: 1.18;
+  text-wrap: balance;
+}
+
+.display-1, .display-2, .display-3, .display-4 {
+  font-weight: 800;
+  letter-spacing: -.028em;
+  line-height: 1.08;
+}
+
+/* Fluid display sizing — the fixed Bootstrap sizes overflowed on small phones */
+.display-3 { font-size: clamp(1.95rem, 5.2vw, 3.6rem); }
+.display-4 { font-size: clamp(1.8rem, 4.4vw, 3rem); }
+.display-5 { font-size: clamp(1.6rem, 3.6vw, 2.4rem); }
+
+h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+h3 { font-size: clamp(1.2rem, 2.2vw, 1.5rem); }
+h4 { font-size: 1.2rem; }
+h5 { font-size: 1.05rem; }
+
+p { line-height: 1.72; }
+p:last-child { margin-bottom: 0; }
+
+/* Keep running prose readable rather than stretched across the full container */
+.geo-answer p,
+.accordion-body { max-width: 74ch; }
+
+a { text-underline-offset: .18em; }
+
+/* ---------------------------------------------------------------------------
+   4. BUTTONS & NAVBAR
+--------------------------------------------------------------------------- */
+
+/* The original .btn:hover added a 1px border where none existed, so every
+   button shifted by a pixel on hover. The border is now always present and
+   merely changes colour. */
+.btn {
+  font-family: "Archivo", "Nunito", sans-serif;
+  font-weight: 600;
+  letter-spacing: .005em;
+  border: 1px solid transparent;
+  border-radius: var(--sp-r);
+  padding: .68rem 1.5rem;
+  transition: background-color var(--sp-t), border-color var(--sp-t),
+              color var(--sp-t), box-shadow var(--sp-t), transform var(--sp-t);
+  will-change: transform;
+}
+
+.btn.btn-primary,
+.btn.btn-secondary {
+  background-color: var(--sp-navy-800);
+  border-color: var(--sp-navy-800);
+  color: #fff;
+  box-shadow: var(--sp-shadow-sm);
+}
+
+.btn.btn-primary:hover,
+.btn.btn-secondary:hover,
+.btn.btn-primary:focus-visible {
+  background-color: var(--sp-navy-700);
+  border-color: var(--sp-navy-700);
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: var(--sp-shadow);
+}
+
+.btn.btn-primary:active { transform: translateY(0); }
+
+.btn-outline-primary {
+  color: var(--sp-navy-800);
+  border-color: var(--sp-navy-600);
+  background-color: transparent;
+}
+.btn-outline-primary:hover {
+  background-color: var(--sp-navy-800);
+  border-color: var(--sp-navy-800);
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+.btn-light {
+  background-color: #fff;
+  color: var(--sp-navy-800) !important;
+  border-color: var(--sp-line);
+}
+.btn-light:hover {
+  background-color: var(--sp-navy-50);
+  color: var(--sp-navy-800) !important;
+  border-color: var(--sp-navy-600);
+  transform: translateY(-2px);
+}
+
+.btn-outline-light:hover { transform: translateY(-2px); }
+
+/* A gold call-to-action for the single most important action on a page.
+   Dark navy text on marigold — 7.4:1, comfortably AAA. */
+.btn-accent {
+  background-color: var(--sp-gold-500);
+  border-color: var(--sp-gold-500);
+  color: var(--sp-navy-950) !important;
+  box-shadow: var(--sp-shadow-sm);
+}
+.btn-accent:hover {
+  background-color: var(--sp-gold-400);
+  border-color: var(--sp-gold-400);
+  color: var(--sp-navy-950) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--sp-shadow);
+}
+
+/* The decorative sweep was running on every button on every hover. Kept, but
+   quicker and subtler. */
+.btn::before { transition: left .45s var(--sp-ease); }
+
+.btn-square, .btn-sm-square, .btn-lg-square { border-radius: var(--sp-r); }
+
+/* ---- navbar ---- */
+.navbar {
+  transition: box-shadow var(--sp-t), background-color var(--sp-t);
+}
+.navbar-light.sticky-top {
+  box-shadow: 0 1px 0 var(--sp-line), 0 6px 20px -12px rgba(12, 36, 68, .30);
+  backdrop-filter: saturate(1.4) blur(6px);
+  background-color: rgba(255, 255, 255, .94) !important;
+}
+.navbar-light .navbar-nav .nav-link {
+  font-family: "Archivo", "Nunito", sans-serif;
+  font-weight: 600;
+  color: var(--sp-body);
+  transition: color var(--sp-t);
+}
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link.active {
+  color: var(--sp-navy-800);
+}
+/* the underline indicator gets the gold */
+.navbar-light .navbar-nav .nav-link::after { background: var(--sp-gold-500) !important; }
+
+.navbar-brand p { color: var(--sp-navy-900); letter-spacing: -.02em; }
+
+/* ---------------------------------------------------------------------------
+   5. CARDS & SECTIONS
+--------------------------------------------------------------------------- */
+
+/* Hover lift moves from margin-top (which reflows the whole column) to
+   transform (which does not). */
+.service-item,
+.course-item,
+.category .content,
+.flip-card {
+  border-radius: var(--sp-r-md);
+  transition: transform var(--sp-t), box-shadow var(--sp-t);
+}
+.service-item:hover,
+.course-item:hover {
+  margin-top: 0;
+  transform: translateY(-6px);
+  box-shadow: var(--sp-shadow-md);
+}
+
+/* The template turned the whole card a solid colour on hover and forced every
+   child to white — which put white text on a mid-tone background. Replaced
+   with a border and shadow change that keeps text legible. */
+.service-item:hover { background: var(--sp-surface); }
+.service-item:hover * { color: inherit !important; }
+.service-item:hover h5,
+.service-item:hover .h5 { color: var(--sp-navy-800) !important; }
+.service-item i { color: var(--sp-gold-600); }
+
+.course-item {
+  overflow: hidden;
+  background: var(--sp-surface);
+  border: 1px solid var(--sp-line);
+}
+.course-item img { transition: transform 400ms var(--sp-ease); }
+.course-item:hover img { transform: scale(1.04); }
+
+/* Section headings: the original drew two full-width rules through the text
+   via ::before/::after, which collided with longer headings. Replaced with a
+   short gold rule underneath. */
+.section-title::before,
+.section-title::after { display: none; }
+.section-title {
+  text-transform: none;
+  padding-bottom: var(--sp-3);
+}
+.section-title::after {
+  display: block;
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  width: 56px;
+  height: 3px;
+  background: var(--sp-gold-500);
+  border-radius: 2px;
+}
+.text-center .section-title::after,
+.section-title.text-center::after { left: 50%; transform: translateX(-50%); }
+
+/* Page banner: a directional gradient reads better than the flat 70% wash */
+.page-header {
+  background:
+    linear-gradient(105deg, rgba(8, 26, 49, .93) 0%, rgba(18, 49, 86, .80) 55%, rgba(27, 68, 120, .72) 100%),
+    url(../img/1.jpg) center center / cover no-repeat;
+}
+.page-header .breadcrumb-item a { color: rgba(255, 255, 255, .82); }
+.page-header .breadcrumb-item a:hover { color: #fff; }
+
+/* Hero carousel overlay — flat rgba(30,41,59,.7) flattened the photography */
+.header-carousel .owl-carousel-item > .position-absolute {
+  background: linear-gradient(100deg, rgba(8, 26, 49, .94) 0%, rgba(12, 36, 68, .80) 48%, rgba(12, 36, 68, .42) 100%) !important;
+}
+.header-carousel .owl-nav .owl-prev,
+.header-carousel .owl-nav .owl-next {
+  border-radius: var(--sp-r);
+  transition: background-color var(--sp-t), border-color var(--sp-t);
+}
+
+/* Accordions */
+.accordion-item {
+  border: 1px solid var(--sp-line);
+  border-radius: var(--sp-r-md) !important;
+  overflow: hidden;
+  background: var(--sp-surface);
+}
+.accordion-button {
+  font-family: "Archivo", "Nunito", sans-serif;
+  font-weight: 600;
+  color: var(--sp-ink);
+  background: var(--sp-surface);
+  line-height: 1.4;
+}
+.accordion-button:not(.collapsed) {
+  color: var(--sp-navy-800);
+  background: var(--sp-navy-50);
+  box-shadow: none;
+}
+.accordion-button:focus { box-shadow: none; border-color: var(--sp-line); }
+
+/* Forms */
+.form-control, .form-select {
+  border-radius: var(--sp-r);
+  border-color: var(--sp-line);
+  padding: .7rem .9rem;
+  transition: border-color var(--sp-t), box-shadow var(--sp-t);
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--sp-navy-600);
+  box-shadow: 0 0 0 3px rgba(42, 91, 152, .16);
+}
+
+/* The GEO answer blocks and landing-page cards */
+.geo-answer .border-start { border-radius: var(--sp-r-md); box-shadow: var(--sp-shadow-sm); }
+
+/* ---------------------------------------------------------------------------
+   6. FOOTER & FLOATING ACTIONS
+--------------------------------------------------------------------------- */
+.footer { background-color: var(--sp-navy-950) !important; }
+.footer h4 {
+  color: #fff;
+  font-size: 1.05rem;
+  letter-spacing: .01em;
+  position: relative;
+  padding-bottom: var(--sp-3);
+  margin-bottom: var(--sp-4) !important;
+}
+.footer h4::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 34px; height: 2px;
+  background: var(--sp-gold-500);
+  border-radius: 2px;
+}
+.footer .text-light { color: rgba(255, 255, 255, .74) !important; }
+.footer a.text-light { transition: color var(--sp-t), padding-left var(--sp-t); }
+.footer a.text-light:hover { color: var(--sp-gold-400) !important; padding-left: 4px; }
+.footer .btn-social {
+  border-radius: var(--sp-r);
+  border-color: rgba(255, 255, 255, .22);
+  transition: background-color var(--sp-t), border-color var(--sp-t), transform var(--sp-t);
+}
+.footer .btn-social:hover {
+  background-color: var(--sp-gold-500);
+  border-color: var(--sp-gold-500);
+  color: var(--sp-navy-950) !important;
+  transform: translateY(-2px);
+}
+
+.floating-whatsapp a,
+.floating-youtube a { box-shadow: var(--sp-shadow-md); transition: transform var(--sp-t); }
+.floating-whatsapp a:hover,
+.floating-youtube a:hover { transform: scale(1.07); }
+
+.back-to-top { border-radius: var(--sp-r); }
+
+/* ---------------------------------------------------------------------------
+   7. ACCESSIBILITY
+   The stylesheet previously defined no focus styles at all, so keyboard users
+   had no visible indication of position anywhere on the site.
+--------------------------------------------------------------------------- */
+:where(a, button, .btn, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--sp-gold-500);
+  outline-offset: 2px;
+  border-radius: var(--sp-r-sm);
+}
+.footer :focus-visible,
+.page-header :focus-visible,
+.header-carousel :focus-visible { outline-color: var(--sp-gold-400); }
+
+/* Never remove the outline without replacing it */
+*:focus { outline-color: var(--sp-gold-500); }
+
+/* Skip link — first tab stop on every page */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 2000;
+  background: var(--sp-navy-900);
+  color: #fff;
+  padding: .75rem 1.25rem;
+  border-radius: 0 0 var(--sp-r) 0;
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 0;
+  color: #fff;
+}
+
+/* Bootstrap's .sr-only equivalent for the spinner label */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* Contrast: the template used .text-muted on light grey, which fell below 4.5:1 */
+.text-muted { color: var(--sp-muted) !important; }
+
+/* ---------------------------------------------------------------------------
+   8. MOTION
+   WOW.js animates nearly every section on the site. Honour the OS setting.
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .wow,
+  .animated,
+  .scroll-animate {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   9. SMALL SCREENS
+--------------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  .container-xxl { padding-left: 1rem; padding-right: 1rem; }
+  section, .container-xxl.py-5 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+  .page-header { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+  .btn { padding: .62rem 1.15rem; }
+  /* the two floating action buttons crowded the thumb zone on phones */
+  .floating-whatsapp a, .floating-youtube a { transform: scale(.88); }
+}
